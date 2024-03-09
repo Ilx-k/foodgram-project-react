@@ -134,9 +134,9 @@ DJOSER = {
     'PASSWORD_CHANGED_EMAIL_CONFIRMATION': False,
     'TOKEN_MODEL': 'rest_framework.authtoken.models.Token',
     'SERIALIZERS': {
-        'user': 'api.serializer.CustomUserSerializer',
-        'user_create': 'api.serializer.CustomCreateUserSerializer',
-        'current_user': 'api.serializer.CustomUserSerializer',
+        'user': 'api.serializers.CustomUserSerializer',
+        'user_create': 'api.serializers.CustomCreateUserSerializer',
+        'current_user': 'api.serializers.CustomUserSerializer',
     },
     'PERMISSIONS': {
         'user': ['djoser.permissions.CurrentUserOrAdminOrReadOnly'],
