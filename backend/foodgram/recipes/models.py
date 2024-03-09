@@ -202,14 +202,14 @@ class ShoppingCart(models.Model):
 class Follow(models.Model):
     author = models.ForeignKey(
         User,
-        related_name='following',
+        related_name='followed',
         on_delete=models.CASCADE,
         verbose_name='Автор рецепта',
     )
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='following',
+        related_name='follower',
         verbose_name='Подписчик'
     )
 
