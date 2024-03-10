@@ -1,5 +1,4 @@
 version: '3.8'
-services:
 
 volumes:
   pg_data:
@@ -7,7 +6,7 @@ volumes:
   media:
   data:
 
-  services:
+services:
   db:
     image: postgres:13
     env_file: .env
