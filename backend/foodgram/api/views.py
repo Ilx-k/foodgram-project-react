@@ -37,8 +37,6 @@ class TagViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class IngredientViewSet(viewsets.ReadOnlyModelViewSet):
-    """Вьюсет для работы с обьектами класса Ingredient."""
-
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
     permission_classes = (AllowAny,)
@@ -48,8 +46,6 @@ class IngredientViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class CustomUserViewSet(UserViewSet):
-    """Вьюсет для работы с обьектами класса User и подписки на авторов."""
-
     queryset = User.objects.all()
     serializer_class = CustomUserSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
@@ -63,8 +59,6 @@ class CustomUserViewSet(UserViewSet):
         url_name='subscriptions',
     )
     def subscriptions(self, request):
-        """Метод для создания страницы подписок"""
-
         queryset = User.objects.filter(follow__user=self.request.user)
         if queryset:
             pages = self.paginate_queryset(queryset)
@@ -82,8 +76,6 @@ class CustomUserViewSet(UserViewSet):
         url_name='subscribe',
     )
     def subscribe(self, request, id):
-        """Метод для управления подписками """
-
         user = request.user
         author = get_object_or_404(User, id=id)
         change_subscription_status = Follow.objects.filter(
@@ -112,8 +104,6 @@ class CustomUserViewSet(UserViewSet):
 
 
 class RecipeViewSet(ModelViewSet):
-    """ViewSet для обработки запросов, связанных с рецептами."""
-
     queryset = Recipe.objects.all()
     pagination_class = FoodPagination
     permission_classes = (IsAuthorOrReadOnly,)
@@ -121,16 +111,12 @@ class RecipeViewSet(ModelViewSet):
     filterset_class = RecipeFilter
 
     def get_serializer_class(self):
-        """Метод для вызова определенного сериализатора. """
-
         if self.action in ('list', 'retrieve'):
             return RecipeSerializer
         elif self.action in ('create', 'partial_update'):
             return CreateRecipeSerializer
 
     def get_serializer_context(self):
-        """Метод для передачи контекста. """
-
         context = super().get_serializer_context()
         context.update({'request': self.request})
         return context
@@ -143,8 +129,6 @@ class RecipeViewSet(ModelViewSet):
         url_name='favorite',
     )
     def favorite(self, request, pk):
-        """Метод для управления избранными подписками """
-
         user = request.user
         recipe = get_object_or_404(Recipe, id=pk)
         if request.method == 'POST':
@@ -176,8 +160,6 @@ class RecipeViewSet(ModelViewSet):
         url_name='shopping_cart',
     )
     def shopping_cart(self, request, pk):
-        """Метод для управления списком покупок"""
-
         user = request.user
         recipe = get_object_or_404(Recipe, id=pk)
 
@@ -205,8 +187,6 @@ class RecipeViewSet(ModelViewSet):
 
     @staticmethod
     def ingredients_to_txt(ingredients):
-        """Метод для объединения ингредиентов в список для загрузки"""
-
         shopping_list = ''
         for ingredient in ingredients:
             shopping_list += (
@@ -224,9 +204,6 @@ class RecipeViewSet(ModelViewSet):
         url_name='download_shopping_cart',
     )
     def download_shopping_cart(self, request):
-        """Метод для загрузки ингредиентов и их количества
-         для выбранных рецептов"""
-
         ingredients = IngredientInRecipe.objects.filter(
             recipe__shopping_recipe__user=request.user
         ).values(
