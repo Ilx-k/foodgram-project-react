@@ -9,7 +9,7 @@ services:
       - ./.env
 
   backend:
-    image: ilxpirate/foodgram_back:latest
+    image: ilxpirate/foodgram_backend:latest
     restart: always
     volumes:
       - data_value:/app/data/
@@ -21,7 +21,7 @@ services:
       - ./.env
 
   frontend:
-    image: ilxpirate/foodgram_front:latest
+    image: ilxpirate/foodgram_frontend:latest
     volumes:
       - ../frontend/:/app/result_build/
     depends_on:
