@@ -15,11 +15,10 @@ services:
 
   backend:
     image: ilxpirate/foodgram_backend:latest
-    restart: always
     volumes:
       - data:/app/data/
-      - static:/app/static/
-      - media:/app/media/
+      - static:/backend_static
+      - media:/media
     depends_on:
       - db
     env_file: .env
@@ -42,7 +41,7 @@ services:
       - ../frontend/build:/usr/share/nginx/html/
       - ../docs/redoc.html:/usr/share/nginx/html/api/docs/redoc.html
       - ../docs/openapi-schema.yml:/usr/share/nginx/html/api/docs/openapi-schema.yml
-      - static:/var/html/static/
-      - media:/var/html/media/
+      - static:/staticfiles/
+      - media:/media
     depends_on:
       - frontend
