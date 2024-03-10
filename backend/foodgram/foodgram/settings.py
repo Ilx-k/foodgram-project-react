@@ -1,16 +1,13 @@
 import os
 
-from django.core.management.utils import get_random_secret_key
-from dotenv import load_dotenv
+from distutils.util import strtobool
 
-load_dotenv()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = os.getenv('SECRET_KEY', get_random_secret_key())
+SECRET_KEY = os.getenv('SECRET_KEY', 'random_secret_key')
 
-
-DEBUG = bool(int(os.getenv('DEBUG', '0')))
+DEBUG = strtobool(os.getenv('DEBUG_MODE', 'False'))
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
 
