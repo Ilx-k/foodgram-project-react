@@ -10,4 +10,4 @@ COPY ./ ./
 
 RUN cd foodgram/
 
-CMD ["gunicorn", "foodgram.wsgi:application", "--bind", "0:9000" ]
+CMD ["gunicorn", "--bind", "0.0.0.0:9000", "foodgram.wsgi"]
