@@ -9,7 +9,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'random_secret_key')
 
 DEBUG = strtobool(os.getenv('DEBUG_MODE', 'False'))
 
-ALLOWED_HOSTS = ['158.160.74.43', '127.0.0.1', 'locallhost', 'piratefoods.ddns.net']
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -108,7 +108,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 CSV_DIR = os.path.join(BASE_DIR, 'data')
 
-MEDIA_URL = '/backend_media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
