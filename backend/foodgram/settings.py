@@ -9,7 +9,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'random_secret_key')
 
 DEBUG = strtobool(os.getenv('DEBUG_MODE', 'False'))
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
+ALLOWED_HOSTS = ['158.160.74.43', '127.0.0.1', 'locallhost', 'piratefoods.ddns.net']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
