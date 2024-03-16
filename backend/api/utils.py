@@ -24,8 +24,8 @@ def generate_shopping_list_pdf(shopping_list, user):
         canvas.saveState()
         canvas.setFont('Arial', 10)
 
-        header_text = 'FoodGram'
-        footer_text = 'AxeUnder'
+        header_text = 'Foodgram'
+        footer_text = 'Pirate'
         w, h = doc.pagesize
         canvas.drawString(inch, h - 0.5 * inch, header_text)
         canvas.drawString(inch, 0.5 * inch, footer_text)
