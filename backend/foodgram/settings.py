@@ -101,12 +101,12 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-CSV_FILES_DIR = os.path.join(BASE_DIR, 'data')
+STATIC_ROOT = BASE_DIR / 'collected_static'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = '/media'
+
+CSV_FILES_DIR = os.path.join(BASE_DIR, 'data')
 
 
 REST_FRAMEWORK = {
