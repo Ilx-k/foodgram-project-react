@@ -1,60 +1,93 @@
-from django.contrib.admin import ModelAdmin, register
+from django.contrib import admin
 
 from .models import (
-    Ingredient, IngredientInRecipe, Recipe,
-    Tag, ShoppingCart, Follow, Favorite
+    Favorite, Ingredient, Recipe, RecipeIngredient, ShoppingCart, Tag,
 )
 
 
-@register(Ingredient)
-class IngredientAdmin(ModelAdmin):
-    list_display = ('pk', 'name', 'measurement_unit')
-    search_fields = ('name',)
+class RecipeIngredientInline(admin.TabularInline):
+    """Админ-модель рецептов_ингредиентов"""
+    model = RecipeIngredient
+    extra = 1
 
 
-@register(Recipe)
-class RecipeAdmin(ModelAdmin):
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    """Админ-модель тегов"""
     list_display = (
-        'pk', 'name', 'author', 'get_favorites', 'get_tags', 'created'
+        'pk',
+        'name',
+        'color',
+        'slug'
     )
-    list_filter = ('author', 'name', 'tags')
+    list_display_links = ('name',)
     search_fields = ('name',)
+    empty_value_display = '-пусто-'
 
-    def get_favorites(self, obj):
-        return obj.favorites.count()
 
-    get_favorites.short_description = (
-        'Количество добавлений рецепта в избранное'
+@admin.register(Recipe)
+class RecipeAdmin(admin.ModelAdmin):
+    """Админ-модель рецептов"""
+    inlines = (RecipeIngredientInline,)
+    list_display = (
+        'pk',
+        'pub_date',
+        'name',
+        'author',
+        'text',
+        'image'
     )
-
-    def get_tags(self, obj):
-        return '\n'.join(obj.tags.values_list('name', flat=True))
-
-    get_tags.short_description = 'Тег или список тегов'
-
-
-@register(Tag)
-class TagAdmin(ModelAdmin):
-    list_display = ('pk', 'name', 'color', 'slug')
-
-
-@register(IngredientInRecipe)
-class IngredientInRecipe(ModelAdmin):
-    list_display = ('pk', 'recipe', 'ingredient', 'amount')
+    list_display_links = ('name',)
+    search_fields = (
+        'name',
+        'author',
+        'text',
+        'ingredients'
+    )
+    list_editable = (
+        'author',
+    )
+    list_filter = ('tags',)
+    empty_value_display = '-пусто-'
 
 
-@register(ShoppingCart)
-class ShoppingCartAdmin(ModelAdmin):
-    list_display = ('pk', 'user', 'recipe')
+@admin.register(Ingredient)
+class IngredientAdmin(admin.ModelAdmin):
+    """Админ-модель ингредиентов"""
+    list_display = (
+        'pk',
+        'name',
+        'measurement_unit'
+    )
+    list_filter = ('measurement_unit',)
+    list = (
+        'measurement_unit'
+    )
+    search_fields = ('name',)
+    empty_value_display = '-пусто-'
 
 
-@register(Follow)
-class FollowAdmin(ModelAdmin):
-    list_display = ('pk', 'user', 'author')
-    search_fields = ('user', 'author')
-    list_filter = ('user', 'author')
+@admin.register(Favorite)
+class FavoriteAdmin(admin.ModelAdmin):
+    """Админ-модель избранного"""
+    list_display = (
+        'pk',
+        'user',
+        'recipe'
+    )
+    list_editable = ('user', 'recipe')
+    search_fields = ('user', 'recipe')
+    empty_value_display = '-пусто-'
 
 
-@register(Favorite)
-class FavoriteAdmin(ModelAdmin):
-    list_display = ('pk', 'user', 'recipe')
+@admin.register(ShoppingCart)
+class ShoppingCartAdmin(admin.ModelAdmin):
+    """Админ-модель списка покупок"""
+    list_display = (
+        'pk',
+        'user',
+        'recipe'
+    )
+    list_editable = ('user', 'recipe')
+    search_fields = ('user', 'recipe')
+    empty_value_display = '-пусто-'
