@@ -21,12 +21,12 @@ def generate_shopping_list_pdf(shopping_list, user):
 
     def header_footer(canvas, doc):
         canvas.saveState()
-        canvas.setFont('Wolgadeutsche', 24)
-
-        header_text = 'Продуктовый помощник'
+        canvas.setFont('Timesnewromanpsmt', 24)
+        header_text = 'Список продуктов'
         footer_text = 'Foodgram'
         w, h = doc.pagesize
         canvas.drawString(inch, h - 0.5 * inch, header_text)
+        canvas.setFont('Wolgadeutsche', 24)
         canvas.drawString(inch, 0.5 * inch, footer_text)
 
         canvas.restoreState()
