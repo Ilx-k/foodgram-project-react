@@ -35,7 +35,7 @@ def generate_shopping_list_pdf(shopping_list, user):
     pdfmetrics.registerFont(
         TTFont('Brush 445', 'data/Brush 445.otf'))
     pdfmetrics.registerFont(
-        TTFont('Arial.ttf', 'data/Arial.ttf'))
+        TTFont('Arial', 'data/Arial.ttf'))
 
     buffer = BytesIO()
     doc = SimpleDocTemplate(buffer, pagesize=letter, title='Shopping List')
