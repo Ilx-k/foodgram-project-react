@@ -1,4 +1,3 @@
-# api/utils.py
 from collections import namedtuple
 from io import BytesIO
 
@@ -22,7 +21,7 @@ def generate_shopping_list_pdf(shopping_list, user):
 
     def header_footer(canvas, doc):
         canvas.saveState()
-        canvas.setFont('Brush 445', 24)
+        canvas.setFont('Wolgadeutsche', 24)
 
         header_text = 'Продуктовый помощник'
         footer_text = 'Foodgram'
@@ -33,9 +32,9 @@ def generate_shopping_list_pdf(shopping_list, user):
         canvas.restoreState()
 
     pdfmetrics.registerFont(
-        TTFont('Brush 445', 'data/Brush 445.otf'))
+        TTFont('Wolgadeutsche', 'data/Wolgadeutsche.ttf'))
     pdfmetrics.registerFont(
-        TTFont('Arial', 'data/Arial.ttf'))
+        TTFont('Timesnewromanpsmt', 'data/timesnewromanpsmt.ttf'))
 
     buffer = BytesIO()
     doc = SimpleDocTemplate(buffer, pagesize=letter, title='Shopping List')
@@ -51,10 +50,10 @@ def generate_shopping_list_pdf(shopping_list, user):
         ('BACKGROUND', (0, 0), (-1, 0), colors.white),
         ('TEXTCOLOR', (0, 0), (-1, 0), colors.black),
         ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
-        ('FONTNAME', (0, 0), (-1, -1), 'Arial'),
+        ('FONTNAME', (0, 0), (-1, -1), 'Timesnewromanpsmt'),
         ('FONTSIZE', (0, 0), (-1, 0), 14),
         ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
-        ('BACKGROUND', (0, 1), (-1, -1), colors.grey),
+        ('BACKGROUND', (0, 1), (-1, -1), colors.whitesmoke),
         ('GRID', (0, 0), (-1, -1), 1, colors.black)
     ]))
 
@@ -71,11 +70,13 @@ ShoppingListItem = namedtuple('ShoppingListItem',
 def process_shopping_list(recipe_list):
     ingredients = {}
     for recipe in recipe_list:
-        for _ in recipe.recipe_ingredients.select_related('ingredient').all():
-            key = (_.ingredient.name, _.ingredient.measurement_unit)
-            if key not in ingredients:
-                ingredients[key] = 0
-            ingredients[key] += _.amount
+        for ingredient in recipe.recipe_ingredients.select_related(
+             'ingredient').all():
+            piece = (ingredient.ingredient.name,
+                     ingredient.ingredient.measurement_unit)
+            if piece not in ingredients:
+                ingredients[piece] = 0
+            ingredients[piece] += ingredient.amount
 
     return [ShoppingListItem(name, amount, measurement_unit)
             for ((name, measurement_unit), amount) in ingredients.items()]

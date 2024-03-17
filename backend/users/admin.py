@@ -5,7 +5,6 @@ from .models import CustomUser, Subscription
 
 @admin.register(CustomUser)
 class UserAdmin(admin.ModelAdmin):
-    """Админ-модель пользователей"""
     list_display = (
         'pk',
         'username',
@@ -29,7 +28,6 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(Subscription)
 class SubscriptionAdmin(admin.ModelAdmin):
-    """Админ-модель подписок"""
     list_display = (
         'pk',
         'user',

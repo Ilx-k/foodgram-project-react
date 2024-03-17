@@ -1,4 +1,3 @@
-# api/view.py
 from datetime import date
 
 from django.http import FileResponse
@@ -28,7 +27,6 @@ from .utils import (
 
 
 class CustomUserViewSet(UserViewSet):
-    """ViewSet модели пользователей"""
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
     lookup_field = 'id'
@@ -170,7 +168,6 @@ class SubscriptionViewSet(viewsets.ViewSet):
 
 
 class TagViewSet(ModelViewSet):
-    """ViewSet модели тегов"""
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
     http_method_names = ['get']
@@ -183,7 +180,6 @@ class TagViewSet(ModelViewSet):
 
 
 class TagListView(APIView):
-    """Представление для получения списка тегов"""
     def get(self, request):
         tags = Tag.objects.all()
         serializer = TagSerializer(tags, many=True)
@@ -191,7 +187,6 @@ class TagListView(APIView):
 
 
 class IngredientViewSet(ModelViewSet):
-    """ViewSet для получения ингредиентов"""
     serializer_class = IngredientSerializer
     lookup_field = 'id'
     pagination_class = None
@@ -203,42 +198,24 @@ class IngredientViewSet(ModelViewSet):
 
 
 class RecipeViewSet(ModelViewSet):
-    """ViewSet модели рецептов"""
     queryset = Recipe.objects.all()
     permission_classes = [IsAuthenticatedOrReadOnly]
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     http_method_names = ['get', 'post', 'put', 'patch', 'delete']
 
-    """
-    def dispatch(self, request, *args, **kwargs):
-        Логи запросов к db
-        res = super().dispatch(request, *args, **kwargs)
-
-        from django.db import connection
-        print(len(connection.queries))
-        for q in connection.queries:
-            print('>>>>', q['sql'])
-
-        return res
-    """
-
     def get_queryset(self):
-        """Оптимизация запросов"""
         queryset = Recipe.objects.select_related('author').prefetch_related(
             'recipe_ingredients__ingredient', 'tags'
         )
 
-        # Фильтрация по автору
         author_id = self.request.query_params.get('author', None)
         if author_id is not None:
             queryset = queryset.filter(author_id=author_id)
 
-        # Фильтрация по тегам
         tags = self.request.query_params.getlist('tags', [])
         if tags:
             queryset = queryset.filter(tags__slug__in=tags).distinct()
 
-        # Фильтрация по избранным
         is_favorited = self.request.query_params.get('is_favorited', None)
         if is_favorited is not None:
             favorited_recipes_ids = self.request.user.favorites_user.all(
@@ -247,7 +224,6 @@ class RecipeViewSet(ModelViewSet):
                 if int(is_favorited)\
                 else queryset.exclude(id__in=favorited_recipes_ids)
 
-        # Фильтрация по корзине покупок
         is_in_shopping_cart = self.request.query_params.get(
             'is_in_shopping_cart', None)
         if is_in_shopping_cart is not None:

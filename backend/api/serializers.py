@@ -1,4 +1,3 @@
-# api/serializers.py
 import base64
 import uuid
 
@@ -12,7 +11,6 @@ from users.models import CustomUser, Subscription
 
 
 class Base64ImageField(serializers.ImageField):
-    """Serializer поля image"""
     def to_internal_value(self, data):
         if isinstance(data, str) and data.startswith('data:image'):
             img_format, img_str = data.split(';base64,')
@@ -39,7 +37,6 @@ class RecipeMinifiedSerializer(serializers.ModelSerializer):
 
 
 class CustomUserSerializer(serializers.ModelSerializer):
-    """Serializer модели CustomUser"""
     is_subscribed = serializers.SerializerMethodField()
 
     class Meta:
@@ -101,7 +98,7 @@ class SubscriptionCreateSerializer(serializers.Serializer):
         if self.context['request'].method == 'POST':
             if user == author:
                 raise serializers.ValidationError(
-                    'Невозможно подписаться на самого себя'
+                    'Нельзя подписаться на самого себя'
                 )
         elif self.context['request'].method == 'DELETE':
             try:
@@ -182,14 +179,12 @@ class CustomUserSignUpSerializer(serializers.ModelSerializer):
 
 
 class TagSerializer(serializers.ModelSerializer):
-    """Serializer модели Tag"""
     class Meta:
         model = Tag
         fields = ('id', 'name', 'color', 'slug')
 
 
 class IngredientSerializer(serializers.ModelSerializer):
-    """Сериализатор для ингредиентов"""
     class Meta:
         model = Ingredient
         fields = ('id', 'name', 'measurement_unit')
@@ -197,7 +192,6 @@ class IngredientSerializer(serializers.ModelSerializer):
 
 
 class RecipeIngredientSerializer(serializers. ModelSerializer):
-    """Serializer модели RecipeIngredient"""
     id = serializers.ReadOnlyField(source='ingredient.id')
     name = serializers.CharField(source='ingredient.name')
     measurement_unit = serializers.CharField(
@@ -209,7 +203,6 @@ class RecipeIngredientSerializer(serializers. ModelSerializer):
 
 
 class RecipeSerializer(serializers.ModelSerializer):
-    """Serializer модели Recipe"""
     tags = TagSerializer(many=True)
     ingredients = RecipeIngredientSerializer(many=True,
                                              source='recipe_ingredients')
@@ -236,7 +229,6 @@ class RecipeSerializer(serializers.ModelSerializer):
 
 
 class RecipeIngredientCreateSerializer(serializers.ModelSerializer):
-    """Serializer создания объектов в модели RecipeIngredient"""
     id = serializers.PrimaryKeyRelatedField(
         queryset=Ingredient.objects.all(),
         source='ingredient'
@@ -259,7 +251,6 @@ class RecipeIngredientCreateSerializer(serializers.ModelSerializer):
 
 
 class RecipeCreateSerializer(serializers.ModelSerializer):
-    """Serializer создания объектов в модели Recipe"""
     ingredients = RecipeIngredientCreateSerializer(many=True)
     image = Base64ImageField()
     tags = serializers.PrimaryKeyRelatedField(many=True,
@@ -319,11 +310,9 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
         instance.image.delete()
         instance.image = validated_data.get('image', instance.image)
 
-        # Обновление тегов
         new_tags = validated_data.pop('tags', [])
         instance.tags.set(new_tags)
 
-        # Обновление ингредиентов
         new_ingredients_data = validated_data.pop('ingredients', [])
         existing_recipe_ingredients = instance.recipe_ingredients.all()
         existing_recipe_ingredients.delete()

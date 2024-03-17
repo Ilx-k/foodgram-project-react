@@ -7,7 +7,6 @@ from users.models import CustomUser
 
 
 class Tag(models.Model):
-    """Модель тегов"""
     name = models.CharField(
         verbose_name=_('Название тега'),
         max_length=200,
@@ -32,7 +31,6 @@ class Tag(models.Model):
 
 
 class Recipe(models.Model):
-    """Модель рецептов"""
     tags = models.ManyToManyField(
         Tag,
         verbose_name=_('Список тегов'),
@@ -100,7 +98,6 @@ class Recipe(models.Model):
 
 
 class Ingredient(models.Model):
-    """Модель ингредиентов"""
     name = models.CharField(
         verbose_name=_('Название ингредиента'),
         max_length=200,
@@ -109,7 +106,7 @@ class Ingredient(models.Model):
     measurement_unit = models.CharField(
         verbose_name=_('Единица измерения'),
         max_length=200,
-        help_text='Введите единицы измерения'
+        help_text='Введите единицу измерения'
     )
 
     class Meta:
@@ -123,7 +120,6 @@ class Ingredient(models.Model):
 
 
 class RecipeIngredient(models.Model):
-    """Модель рецепты_ингредиенты"""
     recipe = models.ForeignKey(
         Recipe,
         verbose_name=_('Рецепт'),
@@ -158,7 +154,6 @@ class RecipeIngredient(models.Model):
 
 
 class Favorite(models.Model):
-    """Модель избранных рецептов"""
     user = models.ForeignKey(
         CustomUser,
         on_delete=models.CASCADE,
@@ -188,7 +183,6 @@ class Favorite(models.Model):
 
 
 class ShoppingCart(models.Model):
-    """ Модель корзины покупок """
     user = models.ForeignKey(
         CustomUser,
         on_delete=models.CASCADE,
