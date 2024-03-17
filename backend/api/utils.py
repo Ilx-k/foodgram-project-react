@@ -33,9 +33,10 @@ def generate_shopping_list_pdf(shopping_list, user):
         canvas.restoreState()
 
     pdfmetrics.registerFont(
-        TTFont('Brush 445', 'data/Brush 445.otf'),
-        TTFont('Arial.ttf', 'data/Arial.ttf'),
-    )
+        TTFont('Brush 445', 'data/Brush 445.otf'))
+    pdfmetrics.registerFont(
+        TTFont('Arial.ttf', 'data/Arial.ttf'))
+
     buffer = BytesIO()
     doc = SimpleDocTemplate(buffer, pagesize=letter, title='Shopping List')
 
@@ -53,7 +54,7 @@ def generate_shopping_list_pdf(shopping_list, user):
         ('FONTNAME', (0, 0), (-1, -1), 'Arial'),
         ('FONTSIZE', (0, 0), (-1, 0), 14),
         ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
-        ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
+        ('BACKGROUND', (0, 1), (-1, -1), colors.grey),
         ('GRID', (0, 0), (-1, -1), 1, colors.black)
     ]))
 
