@@ -70,8 +70,8 @@ ShoppingListItem = namedtuple('ShoppingListItem',
 def process_shopping_list(recipe_list):
     ingredients = {}
     for recipe in recipe_list:
-        for ingredient in recipe.recipe_ingredients.select_related(
-             'ingredient').all():
+        for ingredient in (recipe.recipe_ingredients.select_related
+                           ('ingredient').all()):
             piece = (ingredient.ingredient.name,
                      ingredient.ingredient.measurement_unit)
             if piece not in ingredients:

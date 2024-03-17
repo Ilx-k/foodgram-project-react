@@ -37,4 +37,4 @@ urlpatterns = [
          name='add_shopping_cart-remove_shopping_cart'),
     path('recipes/download_shopping_cart/', ShoppingCartViewSet.as_view(
         {'get': 'download_shopping_cart'}), name='download_shopping_cart'),
-    path('', include(router.urls)),]
+    path('', include(router.urls)), ]
