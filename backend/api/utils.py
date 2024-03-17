@@ -22,18 +22,19 @@ def generate_shopping_list_pdf(shopping_list, user):
 
     def header_footer(canvas, doc):
         canvas.saveState()
-        canvas.setFont('Brush 445', 10)
+        canvas.setFont('Brush 445', 24)
 
         header_text = 'Продуктовый помощник'
         footer_text = 'Foodgram'
         w, h = doc.pagesize
-        canvas.drawString(inch, h - 1.5 * inch, header_text)
-        canvas.drawString(inch, 1.5 * inch, footer_text)
+        canvas.drawString(inch, h - 0.5 * inch, header_text)
+        canvas.drawString(inch, 0.5 * inch, footer_text)
 
         canvas.restoreState()
 
     pdfmetrics.registerFont(
-        TTFont('Brush 445', 'data/Brush 445.otf')
+        TTFont('Brush 445', 'data/Brush 445.otf'),
+        TTFont('Arial.ttf', 'data/Arial.ttf'),
     )
     buffer = BytesIO()
     doc = SimpleDocTemplate(buffer, pagesize=letter, title='Shopping List')
@@ -49,7 +50,7 @@ def generate_shopping_list_pdf(shopping_list, user):
         ('BACKGROUND', (0, 0), (-1, 0), colors.white),
         ('TEXTCOLOR', (0, 0), (-1, 0), colors.black),
         ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
-        ('FONTNAME', (0, 0), (-1, -1), 'Brush 445'),
+        ('FONTNAME', (0, 0), (-1, -1), 'Arial'),
         ('FONTSIZE', (0, 0), (-1, 0), 14),
         ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
         ('BACKGROUND', (0, 1), (-1, -1), colors.beige),
