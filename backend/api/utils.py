@@ -25,7 +25,7 @@ def generate_shopping_list_pdf(shopping_list, user):
         header_text = 'Список продуктов'
         footer_text = 'Foodgram'
         w, h = doc.pagesize
-        canvas.drawString(inch, h - 0.5 * inch, header_text)
+        canvas.drawCentredString(inch, h - 0.5 * inch, header_text)
         canvas.setFont('Wolgadeutsche', 24)
         canvas.drawString(inch, 0.5 * inch, footer_text)
 
