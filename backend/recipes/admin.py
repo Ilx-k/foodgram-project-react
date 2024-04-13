@@ -36,7 +36,8 @@ class RecipeAdmin(admin.ModelAdmin):
         'name',
         'author',
         'text',
-        'image'
+        'image',
+        'get_count_in_favourite'
     )
     list_display_links = ('name',)
     search_fields = (
