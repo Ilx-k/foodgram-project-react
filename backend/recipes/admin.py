@@ -51,6 +51,10 @@ class RecipeAdmin(admin.ModelAdmin):
     list_filter = ('tags',)
     empty_value_display = '-пусто-'
 
+    @admin.display(description='Количество в избранных')
+    def get_count_in_favourite(self, object):
+        return object.favorites_user.count()
+
 
 @admin.register(Ingredient)
 class IngredientAdmin(admin.ModelAdmin):

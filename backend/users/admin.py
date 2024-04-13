@@ -11,14 +11,12 @@ class UserAdmin(admin.ModelAdmin):
         'email',
         'first_name',
         'last_name',
-        'role'
     )
     list_display_links = ('username',)
     search_fields = ('username',)
-    list_filter = ('role',)
+    list_filter = ('username',)
     list_editable = (
         'email',
-        'role',
         'first_name',
         'last_name'
     )
