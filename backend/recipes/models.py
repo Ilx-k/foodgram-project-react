@@ -2,16 +2,20 @@ from django.contrib.auth import get_user_model
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+
 from users.models import CustomUser
+from recipes.validators import validate_name, validate_hex_color
 
 
 class Tag(models.Model):
     name = models.CharField(
         verbose_name=_('Название тега'),
+        validators=(validate_name,),
         max_length=200,
     )
     color = models.CharField(
         verbose_name=_('HEX-цвет тега'),
+        validators=(validate_hex_color,),
         max_length=7,
     )
     slug = models.SlugField(
@@ -50,6 +54,7 @@ class Recipe(models.Model):
     )
     name = models.CharField(
         verbose_name=_('Название'),
+        validators=(validate_name,),
         max_length=200,
         help_text='Введите название рецепта'
     )
@@ -99,6 +104,7 @@ class Recipe(models.Model):
 class Ingredient(models.Model):
     name = models.CharField(
         verbose_name=_('Название ингредиента'),
+        validators=(validate_name,),
         max_length=200,
         help_text='Введите название ингредиента'
     )
@@ -116,6 +122,9 @@ class Ingredient(models.Model):
             models.UniqueConstraint(fields=['name', 'measurement_unit'],
                                     name='unique_ingredient')
         ]
+
+    def __str__(self):
+        return self.name
 
 
 class RecipeIngredient(models.Model):
@@ -139,7 +148,7 @@ class RecipeIngredient(models.Model):
                 'Количество не должно быть меньше 1'
             ),
             MaxValueValidator(
-                100_000,
+                100000,
                 'Количество не должно быть больше 100.000'
             )
         ],

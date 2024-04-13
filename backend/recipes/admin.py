@@ -1,13 +1,17 @@
 from django.contrib import admin
 
 from .models import (
-    Favorite, Ingredient, Recipe, RecipeIngredient, ShoppingCart, Tag,
-)
+    Favorite, Ingredient, Recipe, RecipeIngredient, ShoppingCart, Tag)
+from .constants import SCORE_MIN, AMOUNT_SCORE_MAX
 
 
 class RecipeIngredientInline(admin.TabularInline):
     model = RecipeIngredient
     extra = 1
+    min_num = SCORE_MIN
+    max_num = AMOUNT_SCORE_MAX
+    validate_min = True
+    validate_max = True
 
 
 @admin.register(Tag)

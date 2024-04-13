@@ -1,55 +1,37 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.db.models import Q, F, CheckConstraint, UniqueConstraint
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.validators import UnicodeUsernameValidator
+
+from recipes.validators import validate_name
+from recipes.constants import (NAME_LENGTH, EMAIL_LENGTH)
 
 
 class CustomUser(AbstractUser):
 
-    USER = 'user'
-    ADMIN = 'admin'
-
-    CHOICES_ROLE = (
-        (USER, 'Пользователь'),
-        (ADMIN, 'Администратор')
-    )
-
     username = models.CharField(
         verbose_name=_('Логин'),
-        max_length=150,
-        unique=True,
-        blank=False
+        validators=[UnicodeUsernameValidator()],
+        max_length=NAME_LENGTH,
+        unique=True
     )
     email = models.EmailField(
         verbose_name='E-mail',
-        max_length=254,
+        max_length=EMAIL_LENGTH,
         unique=True,
-        blank=False
     )
     first_name = models.CharField(
         verbose_name=_('Имя'),
-        max_length=150,
+        validators=(validate_name,),
+        max_length=NAME_LENGTH,
         blank=False
     )
     last_name = models.CharField(
         verbose_name=_('Фамилия'),
-        max_length=150,
+        validators=(validate_name,),
+        max_length=NAME_LENGTH,
         blank=False
-    )
-    is_subscribed = models.BooleanField(
-        verbose_name=_('Подписаться на автора'),
-        blank=True,
-        default=False,
-    )
-    password = models.CharField(
-        verbose_name=_('Пароль'),
-        max_length=150,
-        blank=False,
-    )
-    role = models.CharField(
-        verbose_name=_('Роль пользователя'),
-        max_length=32,
-        default=USER,
-        choices=CHOICES_ROLE
     )
     following = models.ManyToManyField(
         "self",
@@ -59,18 +41,14 @@ class CustomUser(AbstractUser):
         related_name='following_relationships'
     )
 
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ('first_name', 'last_name', 'password', 'username')
+
     class Meta:
+        app_label = 'users'
         verbose_name = _('Пользователь')
         verbose_name_plural = _('Пользователи')
         ordering = ('id',)
-
-    @property
-    def is_user(self):
-        return self.role == self.USER
-
-    @property
-    def is_admin(self):
-        return self.role == self.ADMIN or self.is_superuser or self.is_staff
 
     def __str__(self):
         return self.email
@@ -96,8 +74,10 @@ class Subscription(models.Model):
         verbose_name_plural = _('Подписчики')
         ordering = ('id',)
         constraints = [
-            models.UniqueConstraint(
-                fields=['user', 'author'], name='unique_subscripting'
+            CheckConstraint(check=~Q(user=F('author')),
+                            name='not_following_itself'),
+            UniqueConstraint(
+                fields=['user', 'author'], name='unique_subscribe'
             ),
         ]
 
