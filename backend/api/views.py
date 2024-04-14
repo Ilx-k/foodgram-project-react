@@ -23,7 +23,7 @@ from .serializers import (
 from .utils import generate_shopping_list_pdf, process_shopping_list
 from .filters import IngredientFilter, RecipeFilter
 from api.paginations import CustomPagination
-from api.utils import IsAuthenticatedOrReadOnly
+from api.permissions import IsAuthenticatedOrReadOnly
 
 
 class CustomUserViewSet(UserViewSet):
