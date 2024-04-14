@@ -207,10 +207,16 @@ class RecipeViewSet(ModelViewSet):
     queryset = Recipe.objects.all()
     permission_classes = [AuthorOrReadOnly]
     pagination_class = CustomPagination
-    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     http_method_names = ['get', 'post', 'put', 'patch', 'delete']
     filter_backends = (DjangoFilterBackend,)
     filterset_class = RecipeFilter
+
+    def get_serializer_class(self):
+        if self.action == 'create':
+            return RecipeCreateSerializer
+        if self.action == 'update' or self.action == 'partial_update':
+            return RecipeCreateSerializer
+        return RecipeSerializer
 
     @action(detail=True, methods=['post'], url_path='favorite',
             url_name='add_favorite', permission_classes=[IsAuthenticated])
@@ -264,13 +270,6 @@ class RecipeViewSet(ModelViewSet):
             recipe=serializer.validated_data['recipe'])
         favorite.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-    def get_serializer_class(self):
-        if self.action == 'create':
-            return RecipeCreateSerializer
-        if self.action == 'update' or self.action == 'partial_update':
-            return RecipeCreateSerializer
-        return RecipeSerializer
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
