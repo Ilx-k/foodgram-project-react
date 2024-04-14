@@ -2,6 +2,7 @@ from datetime import date
 
 from django.http import FileResponse
 from django.shortcuts import get_object_or_404
+from django_filters.rest_framework import DjangoFilterBackend
 from djoser.serializers import SetPasswordSerializer
 from djoser.views import UserViewSet
 from recipes.models import Favorite, Ingredient, Recipe, ShoppingCart, Tag
@@ -21,6 +22,7 @@ from .serializers import (
     SubscriptionCreateSerializer, SubscriptionSerializer, TagSerializer)
 from .utils import generate_shopping_list_pdf, process_shopping_list
 from .permissions import IsAuthenticatedOrReadOnly
+from .filters import IngredientFilter, RecipeFilter
 from api.paginations import CustomPagination
 
 
@@ -193,11 +195,9 @@ class IngredientViewSet(ModelViewSet):
     serializer_class = IngredientSerializer
     lookup_field = 'id'
     pagination_class = None
-
-    def get_queryset(self):
-        query = self.request.query_params.get('name', '')
-        queryset = Ingredient.objects.filter(name__istartwith=query)
-        return queryset
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = IngredientFilter
+    search_fields = ('^name',)
 
 
 class RecipeViewSet(ModelViewSet):
@@ -206,39 +206,8 @@ class RecipeViewSet(ModelViewSet):
     pagination_class = CustomPagination
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     http_method_names = ['get', 'post', 'put', 'patch', 'delete']
-
-    def get_queryset(self):
-        queryset = Recipe.objects.select_related('author').prefetch_related(
-            'recipe_ingredients__ingredient', 'tags'
-        )
-
-        author_id = self.request.query_params.get('author', None)
-        if author_id is not None:
-            queryset = queryset.filter(author_id=author_id)
-
-        tags = self.request.query_params.getlist('tags', [])
-        if tags:
-            queryset = queryset.filter(tags__slug__in=tags).distinct()
-
-        is_favorited = self.request.query_params.get('is_favorited', None)
-        if is_favorited is not None:
-            favorited_recipes_ids = self.request.user.favorites_user.all(
-            ).values_list('recipe_id', flat=True)
-            queryset = queryset.filter(id__in=favorited_recipes_ids)\
-                if int(is_favorited)\
-                else queryset.exclude(id__in=favorited_recipes_ids)
-
-        is_in_shopping_cart = self.request.query_params.get(
-            'is_in_shopping_cart', None)
-        if is_in_shopping_cart is not None:
-            shopping_cart_recipe_ids = self.request.user.shopping_cart.all(
-            ).values_list('recipe_id', flat=True)
-            queryset = queryset.filter(id__in=shopping_cart_recipe_ids)\
-                if int(is_in_shopping_cart)\
-                else queryset.exclude(
-                id__in=shopping_cart_recipe_ids)
-
-        return queryset
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = RecipeFilter
 
     @action(detail=True, methods=['post'], url_path='favorite',
             url_name='add_favorite', permission_classes=[IsAuthenticated])
