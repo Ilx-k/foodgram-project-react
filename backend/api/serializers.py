@@ -363,7 +363,7 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
             )
         tag_id_list = [item['id'] for item in obj.get('tags')]
         unique_tag_id_list = set(tag_id_list)
-        if len(tag_id_list) != len(unique_tag_id_list):
+        if len(tag_id_list) != len(unique_tag_id_list): 
             raise serializers.ValidationError(
                 'Ингредиенты должны быть уникальны.'
             )
@@ -377,16 +377,11 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 'Ингредиенты должны быть уникальны.'
             )
+        cooking_time = obj.get('cooking_time')
+        if 1 > cooking_time > 1440:
+            raise serializers.ValidationError(
+                'Время готовки не должно быть меньше минуты и больше суток.')
         return obj
-
-    def validate_cooking_time(self, value):
-        if int(value) < 1:
-            raise serializers.ValidationError(
-                'Время готовки не должно быть меньше минуты')
-        if int(value) > 1440:
-            raise serializers.ValidationError(
-                'Время готовки не должно быть больше суток')
-        return value
 
     @atomic(durable=True)
     def create(self, validated_data):
