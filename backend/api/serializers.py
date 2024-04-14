@@ -8,7 +8,7 @@ from recipes.models import (
 )
 from rest_framework import serializers
 from users.models import CustomUser, Subscription
-
+from recipes.constants import SCORE_MIN, SCORE_MAX
 
 class Base64ImageField(serializers.ImageField):
     def to_internal_value(self, data):
@@ -194,7 +194,6 @@ class IngredientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ingredient
         fields = ('id', 'name', 'measurement_unit')
-        read_only_fields = ('id', 'name', 'measurement_unit')
 
 
 class RecipeIngredientSerializer(serializers. ModelSerializer):
@@ -268,11 +267,22 @@ class RecipeIngredientCreateSerializer(serializers.ModelSerializer):
 
 
 class RecipeCreateSerializer(serializers.ModelSerializer):
-    ingredients = RecipeIngredientCreateSerializer(many=True)
+    ingredients = RecipeIngredientCreateSerializer(many=True, write_only=True)
+    author = CustomUserSerializer(read_only=True)
     image = Base64ImageField()
     tags = serializers.PrimaryKeyRelatedField(many=True,
                                               queryset=Tag.objects.all(),
                                               required=True)
+    cooking_time = serializers.IntegerField(
+        min_value=SCORE_MIN,
+        max_value=SCORE_MAX,
+        error_messages={
+            "min_value":
+            f"Время приготовления не может быть меньше {SCORE_MIN} минуты.",
+            "max_value":
+            f"Время приготовления не может быть больше {SCORE_MIN} минут."
+        }
+    )
 
     class Meta:
         model = Recipe
@@ -284,21 +294,41 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
             'text',
             'cooking_time',
         )
+        extra_kwargs = {
+            'ingredients': {'required': True, 'allow_blank': False},
+            'tags': {'required': True, 'allow_blank': False},
+            'name': {'required': True, 'allow_blank': False},
+            'image': {'required': True, 'allow_blank': False},
+            'text': {'required': True, 'allow_blank': False},
+            'cooking_time': {'required': True},
+        }
 
-    def validate_ingredients(self, ingredients):
+    def validate(self, data):
+        ingredients = data.get('ingredients')
         if not ingredients:
             raise serializers.ValidationError(
-                'Поле ингредиентов не может быть пустым')
-        return ingredients
+                {"ingredients": "Поле ингредиентов не может быть пустым!"}
+            )
+        if (len(set(item['id'] for item in ingredients)) != len(ingredients)):
+            raise serializers.ValidationError(
+                'Ингридиенты не должны повторяться!')
+        tags = data.get('tags')
+        if not tags:
+            raise serializers.ValidationError(
+                {"tags": "Поле тегов не может быть пустым!"}
+            )
+        if len(set(tags)) != len(tags):
+            raise serializers.ValidationError(
+                {"tags": "Теги не должны повторяться!"}
+            )
+        return data
 
-    def validate_cooking_time(self, value):
-        if int(value) < 1:
+    def validate_image(self, image):
+        if not image:
             raise serializers.ValidationError(
-                'Время готовки не должно быть меньше минуты')
-        if int(value) > 1440:
-            raise serializers.ValidationError(
-                'Время готовки не должно быть больше суток')
-        return value
+                {"image": "Поле изображения не может быть пустым!"}
+            )
+        return image
 
     @atomic(durable=True)
     def create(self, validated_data):

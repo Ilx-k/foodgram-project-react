@@ -5,7 +5,6 @@ from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
 from djoser.serializers import SetPasswordSerializer
 from djoser.views import UserViewSet
-from recipes.models import Favorite, Recipe, ShoppingCart, Tag
 from rest_framework import filters, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.pagination import PageNumberPagination
@@ -13,8 +12,9 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
-from users.models import CustomUser, Subscription
 
+from recipes.models import Favorite, Recipe, ShoppingCart, Tag, Ingredient
+from users.models import CustomUser, Subscription
 from .serializers import (
     CustomUserSerializer, CustomUserSignUpSerializer, FavoriteCreteSerializer,
     IngredientSerializer, RecipeCreateSerializer, RecipeMinifiedSerializer,
@@ -192,8 +192,9 @@ class TagListView(APIView):
 
 
 class IngredientViewSet(ModelViewSet):
+    queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
-    lookup_field = 'id'
+    http_method_names = ['get']
     pagination_class = None
     filter_backends = (DjangoFilterBackend,)
     filterset_class = IngredientFilter
