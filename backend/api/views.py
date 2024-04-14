@@ -8,7 +8,8 @@ from djoser.views import UserViewSet
 from rest_framework import filters, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.pagination import PageNumberPagination
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import (IsAuthenticated,
+                                        IsAuthenticatedOrReadOnly)
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
@@ -21,13 +22,14 @@ from .serializers import (
     RecipeSerializer, ShoppingCartCreateSerializer,
     SubscriptionCreateSerializer, SubscriptionSerializer, TagSerializer)
 from .utils import generate_shopping_list_pdf, process_shopping_list
-from .permissions import IsAuthenticatedOrReadOnly
+from .permissions import AuthorOrReadOnly
 from .filters import IngredientFilter, RecipeFilter
 from api.paginations import CustomPagination
 
 
 class CustomUserViewSet(UserViewSet):
     queryset = CustomUser.objects.all()
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     serializer_class = CustomUserSerializer
     pagination_class = CustomPagination
     lookup_field = 'id'
@@ -203,7 +205,7 @@ class IngredientViewSet(ModelViewSet):
 
 class RecipeViewSet(ModelViewSet):
     queryset = Recipe.objects.all()
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [AuthorOrReadOnly]
     pagination_class = CustomPagination
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     http_method_names = ['get', 'post', 'put', 'patch', 'delete']
