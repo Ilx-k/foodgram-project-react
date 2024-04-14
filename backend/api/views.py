@@ -33,6 +33,11 @@ class CustomUserViewSet(UserViewSet):
     http_method_names = ['get', 'post', 'put', 'patch', 'delete']
     permission_classes = [IsAuthenticatedOrReadOnly]
 
+    def get_permissions(self):
+        if self.action == "me":
+            return [IsAuthenticated()]
+        return super().get_permissions()
+
     def get_serializer_class(self):
         if self.action == 'create':
             return CustomUserSignUpSerializer
