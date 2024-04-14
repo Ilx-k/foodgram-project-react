@@ -27,6 +27,7 @@ from .utils import IsAuthenticatedOrReadOnly
 
 
 class CustomUserViewSet(UserViewSet):
+
     queryset = CustomUser.objects.all()
     permission_classes = (IsAuthenticatedOrReadOnly,)
     serializer_class = CustomUserSerializer
