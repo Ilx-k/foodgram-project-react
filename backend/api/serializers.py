@@ -215,7 +215,6 @@ class RecipeSerializer(serializers.ModelSerializer):
     ingredients = RecipeIngredientSerializer(many=True,
                                              source='recipe_ingredients')
     image = Base64ImageField()
-    author = CustomUserSerializer(read_only=True)
 
     class Meta:
         model = Recipe
@@ -260,7 +259,7 @@ class RecipeIngredientCreateSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 'Количество не должно быть меньше 1'
             )
-        if value > 100_000:
+        if value > 100000:
             raise serializers.ValidationError(
                 'Количество не должно быть больше 100000'
             )

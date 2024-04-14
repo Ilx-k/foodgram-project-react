@@ -8,8 +8,8 @@ from djoser.views import UserViewSet
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.pagination import PageNumberPagination
-from rest_framework.permissions import (IsAuthenticated,
-                                        IsAuthenticatedOrReadOnly)
+from rest_framework.permissions import IsAuthenticated
+                                        
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
@@ -24,6 +24,7 @@ from .serializers import (
 from .utils import generate_shopping_list_pdf, process_shopping_list
 from .filters import IngredientFilter, RecipeFilter
 from api.paginations import CustomPagination
+from .utils import IsAuthenticatedOrReadOnly
 
 
 class CustomUserViewSet(UserViewSet):
