@@ -361,9 +361,8 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 'Нужно указать минимум 1 тег.'
             )
-        tags = self.initial_data.get('tags')
+        tags = data('tags')
         lst_tags = []
-
         for tag in tags:
             if tag['id'] in lst_tags:
                 raise serializers.ValidationError(
@@ -375,7 +374,7 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 'Нужно указать минимум 1 ингредиент.'
             )
-        ingredients = self.initial_data.get('ingredients')
+        ingredients = data('ingredients')
         lst_ingredient = []
         for ingredient in ingredients:
             if ingredient['id'] in lst_ingredient:
