@@ -1,6 +1,5 @@
 from django.http import FileResponse
 from django.shortcuts import get_object_or_404
-from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import status, viewsets, mixins, filters
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
@@ -77,6 +76,7 @@ class IngredientViewSet(ModelViewSet):
         query = self.request.query_params.get('name', '')
         queryset = Ingredient.objects.filter(name__istartwith=query)
         return queryset
+
 
 class RecipeViewSet(ModelViewSet):
     queryset = Recipe.objects.all()
