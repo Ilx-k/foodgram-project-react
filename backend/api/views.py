@@ -22,7 +22,6 @@ from .serializers import (
     RecipeSerializer, ShoppingCartCreateSerializer,
     SubscriptionCreateSerializer, SubscriptionSerializer, TagSerializer)
 from .utils import generate_shopping_list_pdf, process_shopping_list
-from .permissions import AuthorOrReadOnly
 from .filters import IngredientFilter, RecipeFilter
 from api.paginations import CustomPagination
 
