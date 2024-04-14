@@ -10,6 +10,7 @@ from rest_framework import serializers
 from users.models import CustomUser, Subscription
 from recipes.constants import SCORE_MIN, SCORE_MAX
 
+
 class Base64ImageField(serializers.ImageField):
     def to_internal_value(self, data):
         if isinstance(data, str) and data.startswith('data:image'):
