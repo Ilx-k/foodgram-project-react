@@ -1,7 +1,7 @@
 import os
 
 from pathlib import Path
-from distutils.util import strtobool
+# from distutils.util import strtobool
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
