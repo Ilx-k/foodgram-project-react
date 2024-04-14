@@ -54,7 +54,7 @@ class RecipeAdmin(admin.ModelAdmin):
 
     @admin.display(description='Количество в избранных')
     def get_count_in_favourite(self, object):
-        return object.user_favorits.count()
+        return object.favorites_recipe.count()
 
 
 @admin.register(Ingredient)

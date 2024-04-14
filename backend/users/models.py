@@ -8,7 +8,7 @@ from recipes.validators import validate_name
 from recipes.constants import (NAME_LENGTH, EMAIL_LENGTH)
 
 
-class FoodgramUser(AbstractUser):
+class CustomUser(AbstractUser):
 
     username = models.CharField(
         verbose_name=_('Логин'),
@@ -57,13 +57,13 @@ class FoodgramUser(AbstractUser):
 class Subscription(models.Model):
 
     user = models.ForeignKey(
-        FoodgramUser,
+        CustomUser,
         verbose_name=_('Подписчик'),
         on_delete=models.CASCADE,
         related_name='subscribers'
     )
     author = models.ForeignKey(
-        FoodgramUser,
+        CustomUser,
         verbose_name=_('Автор'),
         on_delete=models.CASCADE,
         related_name='followed_by'
