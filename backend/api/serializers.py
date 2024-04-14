@@ -363,7 +363,7 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
             )
         tag_id_list = [item['id'] for item in obj.get('tags')]
         unique_tag_id_list = set(tag_id_list)
-        if len(tag_id_list) != len(unique_tag_id_list): 
+        if len(tag_id_list) != len(unique_tag_id_list):
             raise serializers.ValidationError(
                 'Ингредиенты должны быть уникальны.'
             )
