@@ -19,9 +19,8 @@ from .serializers import (
     IngredientSerializer, RecipeCreateSerializer, RecipeMinifiedSerializer,
     RecipeSerializer, ShoppingCartCreateSerializer,
     SubscriptionCreateSerializer, SubscriptionSerializer, TagSerializer)
-from .utils import (
-    IsAuthenticatedOrReadOnly, generate_shopping_list_pdf,
-    process_shopping_list)
+from .utils import generate_shopping_list_pdf, process_shopping_list
+from .permissions import IsAuthenticatedOrReadOnly, IsAdminUserOrReadOnly
 from api.paginations import CustomPagination
 
 
@@ -191,13 +190,14 @@ class TagListView(APIView):
 
 
 class IngredientViewSet(ModelViewSet):
+    permission_classes = IsAdminUserOrReadOnly
     serializer_class = IngredientSerializer
     lookup_field = 'id'
     pagination_class = None
 
     def get_queryset(self):
         query = self.request.query_params.get('name', '')
-        queryset = Ingredient.objects.filter(name__icontains=query)
+        queryset = Ingredient.objects.filter(name__istartwith=query)
         return queryset
 
 

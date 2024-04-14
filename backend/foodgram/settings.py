@@ -111,7 +111,6 @@ CSV_FILES_DIR = os.path.join(BASE_DIR, 'data')
 
 
 REST_FRAMEWORK = {
-    "PAGE_SIZE": 6,
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
         "rest_framework.authentication.TokenAuthentication",
@@ -125,8 +124,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 DJOSER = {
-    'LOGIN_FIELD': 'email'
+    "PERMISSIONS": {
+        "user": "api.permissions.IsAuthenticatedOrReadOnly",
+        "user_list": "api.permissions.IsAuthenticatedOrReadOnly",
+    },
+    "HIDE_USERS": False,
+    "LOGIN_FIELD": "email",
 }
+
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 
