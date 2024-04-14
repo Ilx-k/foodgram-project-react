@@ -14,6 +14,15 @@ def validate_name(value):
     return value
 
 
+def validate_recipe_name(value):
+    if re.search(r'^[а-яА-ЯёЁa-zA-Z0-9_\-\.\(\)\s]+$', value) is None:
+        raise ValidationError(
+            (f'Не допустимые символы <{value}> в имени или фамилии.'),
+            params={'value': value},
+        )
+    return value
+
+
 def validate_hex_color(value):
     if re.search(r'^#([A-Fa-f0-9]{3,6})$', value) is None:
         raise ValidationError(

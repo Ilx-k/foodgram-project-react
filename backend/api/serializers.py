@@ -41,7 +41,11 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = ('email', 'id', 'username', 'first_name', 'last_name',
+        fields = ('email',
+                  'id',
+                  'username',
+                  'first_name',
+                  'last_name',
                   'is_subscribed')
         read_only_fields = ('id',)
 
@@ -164,10 +168,14 @@ class ShoppingCartCreateSerializer(serializers.Serializer):
 
 
 class CustomUserSignUpSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = CustomUser
-        fields = ('id', 'email', 'username',
-                  'first_name', 'last_name', 'password')
+        fields = ('email',
+                  'username',
+                  'first_name',
+                  'last_name',
+                  'password')
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):

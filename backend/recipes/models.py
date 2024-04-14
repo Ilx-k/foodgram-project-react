@@ -4,7 +4,9 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from users.models import CustomUser
-from recipes.validators import validate_name, validate_hex_color
+from recipes.validators import (validate_name,
+                                validate_hex_color,
+                                validate_recipe_name)
 
 
 class Tag(models.Model):
@@ -54,7 +56,7 @@ class Recipe(models.Model):
     )
     name = models.CharField(
         verbose_name=_('Название'),
-        validators=(validate_name,),
+        validators=(validate_recipe_name,),
         max_length=200,
         help_text='Введите название рецепта'
     )
