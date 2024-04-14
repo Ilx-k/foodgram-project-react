@@ -384,7 +384,6 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
                 )
             lst_ingredient.append(ingredient['id'])
 
-
         return data
 
     def validate_cooking_time(self, value):
