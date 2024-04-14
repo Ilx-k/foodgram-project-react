@@ -8,7 +8,6 @@ from recipes.models import (
 )
 from rest_framework import serializers
 from users.models import CustomUser, Subscription
-from recipes.constants import SCORE_MIN, SCORE_MAX
 
 
 class Base64ImageField(serializers.ImageField):
@@ -266,9 +265,67 @@ class RecipeIngredientCreateSerializer(serializers.ModelSerializer):
         return value
 
 
+class RecipeSerializer(serializers.ModelSerializer):
+    is_favorited = serializers.SerializerMethodField()
+    is_in_shopping_cart = serializers.SerializerMethodField()
+    tags = TagSerializer(many=True)
+    ingredients = RecipeIngredientSerializer(many=True,
+                                             source='recipe_ingredients')
+    image = Base64ImageField()
+    author = CustomUserSerializer(read_only=True)
+
+    class Meta:
+        model = Recipe
+        fields = (
+            'id',
+            'tags',
+            'author',
+            'ingredients',
+            'is_favorited',
+            'is_in_shopping_cart',
+            'name',
+            'image',
+            'text',
+            'cooking_time',
+        )
+
+    def get_is_favorited(self, obj):
+        user = self.context['request'].user
+        if user.is_authenticated:
+            return Favorite.objects.filter(user=user, recipe=obj).exists()
+        return False
+
+    def get_is_in_shopping_cart(self, obj):
+        user = self.context['request'].user
+        if user.is_authenticated:
+            return ShoppingCart.objects.filter(user=user, recipe=obj).exists()
+        return False
+
+
+class RecipeIngredientCreateSerializer(serializers.ModelSerializer):
+    id = serializers.PrimaryKeyRelatedField(
+        queryset=Ingredient.objects.all(),
+        source='ingredient'
+    )
+
+    class Meta:
+        model = RecipeIngredient
+        fields = ('id', 'amount')
+
+    def validate_amount(self, value):
+        if value < 1:
+            raise serializers.ValidationError(
+                'Количество не должно быть меньше 1'
+            )
+        if value > 100_000:
+            raise serializers.ValidationError(
+                'Количество не должно быть больше 100000'
+            )
+        return value
+
+
 class RecipeCreateSerializer(serializers.ModelSerializer):
     ingredients = RecipeIngredientCreateSerializer(many=True)
-    author = CustomUserSerializer(read_only=True)
     image = Base64ImageField()
     tags = serializers.PrimaryKeyRelatedField(many=True,
                                               queryset=Tag.objects.all(),
@@ -284,50 +341,21 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
             'text',
             'cooking_time',
         )
-        extra_kwargs = {
-            'ingredients': {'required': True, 'allow_blank': False},
-            'tags': {'required': True, 'allow_blank': False},
-            'name': {'required': True, 'allow_blank': False},
-            'image': {'required': True, 'allow_blank': False},
-            'text': {'required': True, 'allow_blank': False},
-            'cooking_time': {'required': True},
-        }
 
-    def validate(self, data):
-        ingredients = data.get('ingredients')
+    def validate_ingredients(self, ingredients):
         if not ingredients:
             raise serializers.ValidationError(
-                {"ingredients": "Поле ингредиентов не может быть пустым!"}
-            )
-        if (len(set(item['id'] for item in ingredients)) != len(ingredients)):
-            raise serializers.ValidationError(
-                'Ингридиенты не должны повторяться!')
-        tags = data.get('tags')
-        if not tags:
-            raise serializers.ValidationError(
-                {"tags": "Поле тегов не может быть пустым!"}
-            )
-        if len(set(tags)) != len(tags):
-            raise serializers.ValidationError(
-                {"tags": "Теги не должны повторяться!"}
-            )
-        return data
+                'Поле ингредиентов не может быть пустым')
+        return ingredients
 
     def validate_cooking_time(self, value):
-        if int(value) < SCORE_MIN:
+        if int(value) < 1:
             raise serializers.ValidationError(
                 'Время готовки не должно быть меньше минуты')
-        if int(value) > SCORE_MAX:
+        if int(value) > 1440:
             raise serializers.ValidationError(
                 'Время готовки не должно быть больше суток')
         return value
-
-    def validate_image(self, image):
-        if not image:
-            raise serializers.ValidationError(
-                {"image": "Поле изображения не может быть пустым!"}
-            )
-        return image
 
     @atomic(durable=True)
     def create(self, validated_data):
