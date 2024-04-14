@@ -351,37 +351,25 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
             'cooking_time': {'required': True},
         }
 
-    def validate(self, obj):
-        for field in ['name', 'text', 'cooking_time']:
-            if not obj.get(field):
-                raise serializers.ValidationError(
-                    f'{field} - Обязательное поле.'
-                )
-        if not obj.get('tags'):
+    def validate(self, data):
+        ingredients = data.get("ingredients")
+        if not ingredients:
             raise serializers.ValidationError(
-                'Нужно указать минимум 1 тег.'
+                {"ingredients": "Поле ингредиентов не может быть пустым!"}
             )
-        tag_id_list = [item['id'] for item in obj.get('tags')]
-        unique_tag_id_list = set(tag_id_list)
-        if len(tag_id_list) != len(unique_tag_id_list):
+        if (len(set(item["id"] for item in ingredients)) != len(ingredients)):
             raise serializers.ValidationError(
-                'Ингредиенты должны быть уникальны.'
+                "Ингридиенты не должны повторяться!")
+        tags = data.get("tags")
+        if not tags:
+            raise serializers.ValidationError(
+                {"tags": "Поле тегов не может быть пустым!"}
             )
-        if not obj.get('ingredients'):
+        if len(set(tags)) != len(tags):
             raise serializers.ValidationError(
-                'Нужно указать минимум 1 ингредиент.'
+                {"tags": "Теги не должны повторяться!"}
             )
-        inrgedient_id_list = [item['id'] for item in obj.get('ingredients')]
-        unique_ingredient_id_list = set(inrgedient_id_list)
-        if len(inrgedient_id_list) != len(unique_ingredient_id_list):
-            raise serializers.ValidationError(
-                'Ингредиенты должны быть уникальны.'
-            )
-        cooking_time = obj.get('cooking_time')
-        if 1 > cooking_time > 1440:
-            raise serializers.ValidationError(
-                'Время готовки не должно быть меньше минуты и больше суток.')
-        return obj
+        return data
 
     @atomic(durable=True)
     def create(self, validated_data):
