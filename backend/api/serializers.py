@@ -351,29 +351,21 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
             'cooking_time': {'required': True},
         }
 
-    def validate_ingredients(self, ingredients):
-        if not ingredients:
+    def validate(self, obj):
+        for field in ['name', 'text', 'cooking_time']:
+            if not obj.get(field):
+                raise serializers.ValidationError(
+                    f'{field} - Обязательное поле.'
+                )
+        if not obj.get('tags'):
             raise serializers.ValidationError(
-                'Поле ингредиентов не может быть пустым')
-        inrgedients_id_list = [item['id'] for item in ingredients]
-        unique_ingredients_id_list = set(inrgedients_id_list)
-        if len(inrgedients_id_list) != len(unique_ingredients_id_list):
-            raise serializers.ValidationError(
-                'Ингредиенты должны быть уникальны.'
+                'Нужно указать минимум 1 тег.'
             )
-        return ingredients
-
-    def validate_tags(self, tags):
-        if not tags:
+        if not obj.get('ingredients'):
             raise serializers.ValidationError(
-                'Поле тегов не может быть пустым')
-        tags_id_list = [item['id'] for item in tags]
-        unique_tags_id_list = set(tags_id_list)
-        if len(tags_id_list) != len(unique_tags_id_list):
-            raise serializers.ValidationError(
-                'Теги не должны повторяться.'
+                'Нужно указать минимум 1 ингредиент.'
             )
-        return tags
+        return obj
 
     def validate_cooking_time(self, value):
         if int(value) < 1:
