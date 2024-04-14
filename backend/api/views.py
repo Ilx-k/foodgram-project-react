@@ -18,20 +18,19 @@ from .serializers import (
     CustomUserSerializer, CustomUserSignUpSerializer, FavoriteCreteSerializer,
     IngredientSerializer, RecipeCreateSerializer, RecipeMinifiedSerializer,
     RecipeSerializer, ShoppingCartCreateSerializer,
-    SubscriptionCreateSerializer, SubscriptionSerializer, TagSerializer,
-)
+    SubscriptionCreateSerializer, SubscriptionSerializer, TagSerializer)
 from .utils import (
     IsAuthenticatedOrReadOnly, generate_shopping_list_pdf,
-    process_shopping_list,
-)
+    process_shopping_list)
+from .paginations import CustomPagination
 
 
 class CustomUserViewSet(UserViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
+    pagination_class = CustomPagination
     lookup_field = 'id'
     http_method_names = ['get', 'post', 'put', 'patch', 'delete']
-    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_permissions(self):
         if self.action == "me":
