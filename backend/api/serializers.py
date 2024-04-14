@@ -317,7 +317,7 @@ class RecipeIngredientCreateSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 'Количество не должно быть меньше 1'
             )
-        if value > 100_000:
+        if value > 100000:
             raise serializers.ValidationError(
                 'Количество не должно быть больше 100000'
             )
@@ -355,7 +355,25 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
         if not ingredients:
             raise serializers.ValidationError(
                 'Поле ингредиентов не может быть пустым')
+        inrgedients_id_list = [item['id'] for item in ingredients]
+        unique_ingredients_id_list = set(inrgedients_id_list)
+        if len(inrgedients_id_list) != len(unique_ingredients_id_list):
+            raise serializers.ValidationError(
+                'Ингредиенты должны быть уникальны.'
+            )
         return ingredients
+
+    def validate_tags(self, tags):
+        if not tags:
+            raise serializers.ValidationError(
+                'Поле тегов не может быть пустым')
+        tags_id_list = [item['id'] for item in tags]
+        unique_tags_id_list = set(tags_id_list)
+        if len(tags_id_list) != len(unique_tags_id_list):
+            raise serializers.ValidationError(
+                'Теги не должны повторяться.'
+            )
+        return tags
 
     def validate_cooking_time(self, value):
         if int(value) < 1:
