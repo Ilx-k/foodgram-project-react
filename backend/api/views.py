@@ -31,6 +31,7 @@ class CustomUserViewSet(UserViewSet):
     serializer_class = CustomUserSerializer
     lookup_field = 'id'
     http_method_names = ['get', 'post', 'put', 'patch', 'delete']
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_serializer_class(self):
         if self.action == 'create':
