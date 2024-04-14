@@ -134,7 +134,6 @@ class IngredientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ingredient
         fields = ('id', 'name', 'measurement_unit')
-        read_only_fields = '__all__',
 
 
 class RecipeIngredientSerializer(serializers. ModelSerializer):
