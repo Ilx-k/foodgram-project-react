@@ -268,7 +268,7 @@ class RecipeIngredientCreateSerializer(serializers.ModelSerializer):
 
 
 class RecipeCreateSerializer(serializers.ModelSerializer):
-    ingredients = RecipeIngredientCreateSerializer(many=True, write_only=True)
+    ingredients = RecipeIngredientCreateSerializer(many=True)
     author = CustomUserSerializer(read_only=True)
     image = Base64ImageField()
     tags = serializers.PrimaryKeyRelatedField(many=True,
