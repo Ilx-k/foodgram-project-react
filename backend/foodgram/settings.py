@@ -138,6 +138,10 @@ DJOSER = {
         'user': 'api.serializers.FoodgramUserSerializer',
         'current_user': 'api.serializers.FoodgramUserSerializer',
     },
+    "PERMISSIONS": {
+        "user": ["djoser.permissions.CurrentUserOrAdminOrReadOnly"],
+        "user_list": ["rest_framework.permissions.IsAuthenticatedOrReadOnly"],
+    },
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
