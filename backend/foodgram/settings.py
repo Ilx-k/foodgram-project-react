@@ -8,7 +8,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY', 'random_secret_key')
 
-DEBUG = strtobool(os.getenv('DEBUG_MODE', 'False'))
+DEBUG = True
+
+# DEBUG = strtobool(os.getenv('DEBUG_MODE', 'False'))
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
 

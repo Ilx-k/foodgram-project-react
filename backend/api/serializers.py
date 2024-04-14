@@ -295,41 +295,6 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
             'text',
             'cooking_time',
         )
-        extra_kwargs = {
-            'ingredients': {'required': True, 'allow_blank': False},
-            'tags': {'required': True, 'allow_blank': False},
-            'name': {'required': True, 'allow_blank': False},
-            'image': {'required': True, 'allow_blank': False},
-            'text': {'required': True, 'allow_blank': False},
-            'cooking_time': {'required': True},
-        }
-
-    def validate(self, data):
-        ingredients = data.get('ingredients')
-        if not ingredients:
-            raise serializers.ValidationError(
-                {"ingredients": "Поле ингредиентов не может быть пустым!"}
-            )
-        if (len(set(item['id'] for item in ingredients)) != len(ingredients)):
-            raise serializers.ValidationError(
-                'Ингридиенты не должны повторяться!')
-        tags = data.get('tags')
-        if not tags:
-            raise serializers.ValidationError(
-                {"tags": "Поле тегов не может быть пустым!"}
-            )
-        if len(set(tags)) != len(tags):
-            raise serializers.ValidationError(
-                {"tags": "Теги не должны повторяться!"}
-            )
-        return data
-
-    def validate_image(self, image):
-        if not image:
-            raise serializers.ValidationError(
-                {"image": "Поле изображения не может быть пустым!"}
-            )
-        return image
 
     @atomic(durable=True)
     def create(self, validated_data):
