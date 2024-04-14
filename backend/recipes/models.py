@@ -106,7 +106,7 @@ class Recipe(models.Model):
 class Ingredient(models.Model):
     name = models.CharField(
         verbose_name=_('Название ингредиента'),
-        validators=(validate_name,),
+        validators=(validate_recipe_name,),
         max_length=200,
         help_text='Введите название ингредиента'
     )

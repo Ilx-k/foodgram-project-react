@@ -197,7 +197,7 @@ class IngredientViewSet(ModelViewSet):
 
     def get_queryset(self):
         query = self.request.query_params.get('name', '')
-        queryset = Ingredient.objects.filter(name__icontains=query)
+        queryset = Ingredient.objects.filter(name__istartwith=query)
         return queryset
 
 
