@@ -111,9 +111,7 @@ CSV_FILES_DIR = os.path.join(BASE_DIR, 'data')
 
 
 REST_FRAMEWORK = {
-    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 6,
-    "PAGINATE_BY_PARAM": "limit",
 
     'DEFAULT_AUTHENTICATION_CLASSES': [
         "rest_framework.authentication.TokenAuthentication",

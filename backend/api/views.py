@@ -22,7 +22,7 @@ from .serializers import (
 from .utils import (
     IsAuthenticatedOrReadOnly, generate_shopping_list_pdf,
     process_shopping_list)
-from .paginations import CustomPagination
+from api.paginations import CustomPagination
 
 
 class CustomUserViewSet(UserViewSet):
