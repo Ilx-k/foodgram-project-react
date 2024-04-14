@@ -351,25 +351,20 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
             'cooking_time': {'required': True},
         }
 
-    def validate(self, data):
-        ingredients = data.get("ingredients")
+    def validate_ingredients(self, ingredients):
         if not ingredients:
             raise serializers.ValidationError(
-                {"ingredients": "Поле ингредиентов не может быть пустым!"}
-            )
-        if (len(set(item["id"] for item in ingredients)) != len(ingredients)):
+                'Поле ингредиентов не может быть пустым')
+        return ingredients
+
+    def validate_cooking_time(self, value):
+        if int(value) < 1:
             raise serializers.ValidationError(
-                "Ингридиенты не должны повторяться!")
-        tags = data.get("tags")
-        if not tags:
+                'Время готовки не должно быть меньше минуты')
+        if int(value) > 1440:
             raise serializers.ValidationError(
-                {"tags": "Поле тегов не может быть пустым!"}
-            )
-        if len(set(tags)) != len(tags):
-            raise serializers.ValidationError(
-                {"tags": "Теги не должны повторяться!"}
-            )
-        return data
+                'Время готовки не должно быть больше суток')
+        return value
 
     @atomic(durable=True)
     def create(self, validated_data):
