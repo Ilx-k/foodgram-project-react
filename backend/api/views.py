@@ -23,7 +23,7 @@ from .serializers import (
 from .utils import generate_shopping_list_pdf, process_shopping_list
 from .filters import IngredientFilter, RecipeFilter
 from api.paginations import CustomPagination
-from api.permissions import IsAuthenticatedOrReadOnly
+from api.permissions import AuthorOrReadOnly
 
 
 class CustomUserViewSet(UserViewSet):
@@ -205,11 +205,12 @@ class IngredientViewSet(ModelViewSet):
 
 class RecipeViewSet(ModelViewSet):
     queryset = Recipe.objects.all()
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+    permission_classes = (AuthorOrReadOnly,)
     pagination_class = CustomPagination
     http_method_names = ['get', 'post', 'put', 'patch', 'delete']
     filter_backends = (DjangoFilterBackend,)
     filterset_class = RecipeFilter
+
 
     def get_serializer_class(self):
         if self.action == 'create':
