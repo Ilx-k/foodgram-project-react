@@ -80,6 +80,7 @@ class IngredientViewSet(ModelViewSet):
 class RecipeViewSet(ModelViewSet):
     queryset = Recipe.objects.all()
     permission_classes = [IsAuthenticatedOrReadOnly]
+    pagination_class = CustomPagination
     filter_backends = [DjangoFilterBackend]
     filterset_class = RecipeFilter
     http_method_names = ['get', 'post', 'put', 'patch', 'delete']
