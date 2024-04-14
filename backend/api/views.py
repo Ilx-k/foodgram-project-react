@@ -20,7 +20,7 @@ from .serializers import (
     RecipeSerializer, ShoppingCartCreateSerializer,
     SubscriptionCreateSerializer, SubscriptionSerializer, TagSerializer)
 from .utils import generate_shopping_list_pdf, process_shopping_list
-from .permissions import IsAuthenticatedOrReadOnly, IsAdminUserOrReadOnly
+from .permissions import IsAuthenticatedOrReadOnly
 from api.paginations import CustomPagination
 
 
@@ -190,7 +190,6 @@ class TagListView(APIView):
 
 
 class IngredientViewSet(ModelViewSet):
-    permission_classes = IsAdminUserOrReadOnly
     serializer_class = IngredientSerializer
     lookup_field = 'id'
     pagination_class = None
