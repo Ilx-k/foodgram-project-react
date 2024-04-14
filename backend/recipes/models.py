@@ -4,7 +4,8 @@ from django.utils.translation import gettext_lazy as _
 
 from users.models import FoodgramUser
 from .validators import (validate_amount, validate_cooking_time,
-                         validate_name, validate_hex_color)
+                         validate_name, validate_hex_color,
+                         validate_recipe_name)
 from .constants import (CHAR_LENGTH, TEXT_LENGTH, COLOR_LENGTH)
 
 
@@ -38,7 +39,7 @@ class Tag(models.Model):
 class Ingredient(models.Model):
     name = models.CharField(
         verbose_name=_('Название ингредиента'),
-        validators=(validate_name,),
+        validators=(validate_recipe_name,),
         max_length=CHAR_LENGTH,
         help_text='Введите название ингредиента'
     )
@@ -75,7 +76,7 @@ class Recipe(models.Model):
     )
     name = models.CharField(
         verbose_name=_('Название'),
-        validators=(validate_name,),
+        validators=(validate_recipe_name,),
         max_length=CHAR_LENGTH,
         help_text='Введите название рецепта'
     )

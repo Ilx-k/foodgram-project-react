@@ -1,7 +1,7 @@
 from django.http import FileResponse
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import status, viewsets, mixins
+from rest_framework import status, viewsets, mixins, filters
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -81,9 +81,41 @@ class RecipeViewSet(ModelViewSet):
     queryset = Recipe.objects.all()
     permission_classes = [IsAuthenticatedOrReadOnly]
     pagination_class = CustomPagination
-    filter_backends = [DjangoFilterBackend]
-    filterset_class = RecipeFilter
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     http_method_names = ['get', 'post', 'put', 'patch', 'delete']
+
+    def get_queryset(self):
+        queryset = Recipe.objects.select_related('author').prefetch_related(
+            'recipe_ingredients__ingredient', 'tags'
+        )
+
+        author_id = self.request.query_params.get('author', None)
+        if author_id is not None:
+            queryset = queryset.filter(author_id=author_id)
+
+        tags = self.request.query_params.getlist('tags', [])
+        if tags:
+            queryset = queryset.filter(tags__slug__in=tags).distinct()
+
+        is_favorited = self.request.query_params.get('is_favorited', None)
+        if is_favorited is not None:
+            favorited_recipes_ids = self.request.user.favorites_user.all(
+            ).values_list('recipe_id', flat=True)
+            queryset = queryset.filter(id__in=favorited_recipes_ids)\
+                if int(is_favorited)\
+                else queryset.exclude(id__in=favorited_recipes_ids)
+
+        is_in_shopping_cart = self.request.query_params.get(
+            'is_in_shopping_cart', None)
+        if is_in_shopping_cart is not None:
+            shopping_cart_recipe_ids = self.request.user.shopping_cart.all(
+            ).values_list('recipe_id', flat=True)
+            queryset = queryset.filter(id__in=shopping_cart_recipe_ids)\
+                if int(is_in_shopping_cart)\
+                else queryset.exclude(
+                id__in=shopping_cart_recipe_ids)
+
+        return queryset
 
     def get_serializer_class(self):
         if self.action in ('create', 'update', 'partial_update'):
