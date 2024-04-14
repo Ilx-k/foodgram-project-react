@@ -15,7 +15,7 @@ def validate_name(value):
 
 
 def validate_recipe_name(value):
-    if re.search(r'^[а-яА-ЯёЁa-zA-Z0-9_\-\.\(\)\s]+$', value) is None:
+    if re.search(r'^[а-яА-ЯёЁa-zA-Z0-9-_.()\s]+$', value) is None:
         raise ValidationError(
             (f'Не допустимые символы <{value}> в имени или фамилии.'),
             params={'value': value},
