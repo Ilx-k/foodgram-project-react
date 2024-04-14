@@ -1,20 +1,21 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import FoodgramUser, Subscription
+from .models import CustomUser, Subscription
 
 
-@admin.register(FoodgramUser)
+@admin.register(CustomUser)
 class UserAdmin(UserAdmin):
     list_display = (
         'pk',
         'username',
         'email',
         'first_name',
-        'last_name'
+        'last_name',
     )
     list_display_links = ('username',)
     search_fields = ('username',)
+    list_filter = ('username',)
     list_editable = (
         'email',
         'first_name',
