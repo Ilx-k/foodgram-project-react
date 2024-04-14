@@ -1,31 +1,12 @@
-import base64
-import uuid
-
-from django.core.files.base import ContentFile
+from rest_framework import serializers
 from django.db.transaction import atomic
+from drf_extra_fields.fields import Base64ImageField
+
 from recipes.models import (
     Favorite, Ingredient, Recipe, RecipeIngredient, ShoppingCart, Tag,
 )
-from rest_framework import serializers
-from users.models import CustomUser, Subscription
-
-
-class Base64ImageField(serializers.ImageField):
-    def to_internal_value(self, data):
-        if isinstance(data, str) and data.startswith('data:image'):
-            img_format, img_str = data.split(';base64,')
-            ext = img_format.split('/')[-1]
-            if ext.lower() not in ('jpeg', 'jpg', 'png'):
-                raise serializers.ValidationError(
-                    'Формат изображения не поддерживается. \
-                    Используйте форматы JPEG или PNG.')
-
-            uid = uuid.uuid4()
-            data = ContentFile(
-                base64.b64decode(img_str), name=uid.urn[9:] + '.' + ext
-            )
-
-        return super(Base64ImageField, self).to_internal_value(data)
+from users.models import FoodgramUser, Subscription
+from recipes.constants import (SCORE_MIN, AMOUNT_SCORE_MAX, SCORE_MAX)
 
 
 class RecipeMinifiedSerializer(serializers.ModelSerializer):
@@ -36,16 +17,13 @@ class RecipeMinifiedSerializer(serializers.ModelSerializer):
         read_only_fields = ('id',)
 
 
-class CustomUserSerializer(serializers.ModelSerializer):
+class FoodgramUserSerializer(serializers.ModelSerializer):
+
     is_subscribed = serializers.SerializerMethodField()
 
     class Meta:
-        model = CustomUser
-        fields = ('email',
-                  'id',
-                  'username',
-                  'first_name',
-                  'last_name',
+        model = FoodgramUser
+        fields = ('email', 'id', 'username', 'first_name', 'last_name',
                   'is_subscribed')
         read_only_fields = ('id',)
 
@@ -86,7 +64,7 @@ class SubscriptionSerializer(serializers.ModelSerializer):
 class SubscriptionCreateSerializer(serializers.Serializer):
     user = serializers.PrimaryKeyRelatedField(read_only=True)
     author = serializers.PrimaryKeyRelatedField(
-        queryset=CustomUser.objects.all()
+        queryset=FoodgramUser.objects.all()
     )
 
     class Meta:
@@ -112,9 +90,10 @@ class SubscriptionCreateSerializer(serializers.Serializer):
         return Subscription.objects.create(**validated_data)
 
 
-class FavoriteCreteSerializer(serializers.Serializer):
+class FavoriteCreateSerializer(serializers.Serializer):
     user = serializers.PrimaryKeyRelatedField(read_only=True)
     recipe = serializers.PrimaryKeyRelatedField(queryset=Recipe.objects.all())
+    model = Favorite
 
     class Meta:
         model = Favorite
@@ -124,64 +103,25 @@ class FavoriteCreteSerializer(serializers.Serializer):
         user = self.context['request'].user
         recipe = attrs['recipe']
         if self.context['request'].method == 'POST':
-            if Favorite.objects.filter(user=user, recipe=recipe).exists():
+            if self.model.objects.filter(user=user, recipe=recipe).exists():
                 raise serializers.ValidationError('Рецепт уже в избранном')
         elif self.context['request'].method == 'DELETE':
-            if not Favorite.objects.filter(user=user, recipe=recipe).exists():
+            if not self.model.objects.filter(user=user,
+                                             recipe=recipe).exists():
                 raise serializers.ValidationError(
                     'Рецепт не найден в избранных'
                 )
         return attrs
 
     def create(self, validated_data):
-        return Favorite.objects.create(**validated_data)
+        return self.model.objects.create(**validated_data)
 
 
-class ShoppingCartCreateSerializer(serializers.Serializer):
-    user = serializers.PrimaryKeyRelatedField(read_only=True)
-    recipe = serializers.PrimaryKeyRelatedField(queryset=Recipe.objects.all())
+class ShoppingCartCreateSerializer(FavoriteCreateSerializer):
+    model = ShoppingCart
 
-    class Meta:
+    class Meta(FavoriteCreateSerializer.Meta):
         model = ShoppingCart
-        fields = ('user', 'recipe')
-
-    def validate(self, attrs):
-        user = self.context['request'].user
-        recipe = attrs['recipe']
-
-        if self.context['request'].method == 'POST':
-            if ShoppingCart.objects.filter(user=user, recipe=recipe).exists():
-                raise serializers.ValidationError(
-                    'Рецепт уже в корзине')
-        elif self.context['request'].method == 'DELETE':
-            if not ShoppingCart.objects.filter(user=user,
-                                               recipe=recipe).exists():
-                raise serializers.ValidationError(
-                    'Рецепт не найден в корзине')
-        return attrs
-
-    def create(self, validated_data):
-        return ShoppingCart.objects.create(**validated_data)
-
-
-class CustomUserSignUpSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = CustomUser
-        fields = ('email',
-                  'id',
-                  'username',
-                  'first_name',
-                  'last_name',
-                  'password')
-        extra_kwargs = {'password': {'write_only': True}}
-
-    def create(self, validated_data):
-        password = validated_data.pop('password')
-        instance = super().create(validated_data)
-        instance.set_password(password)
-        instance.save()
-        return instance
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -209,28 +149,17 @@ class RecipeIngredientSerializer(serializers. ModelSerializer):
 
 
 class RecipeSerializer(serializers.ModelSerializer):
-    is_favorited = serializers.SerializerMethodField()
-    is_in_shopping_cart = serializers.SerializerMethodField()
     tags = TagSerializer(many=True)
     ingredients = RecipeIngredientSerializer(many=True,
-                                             source='recipe_ingredients')
+                                             source='ingredientes')
     image = Base64ImageField()
-    author = CustomUserSerializer(read_only=True)
+    author = FoodgramUserSerializer(read_only=True)
+    is_favorited = serializers.SerializerMethodField()
+    is_in_shopping_cart = serializers.SerializerMethodField()
 
     class Meta:
         model = Recipe
-        fields = (
-            'id',
-            'tags',
-            'author',
-            'ingredients',
-            'is_favorited',
-            'is_in_shopping_cart',
-            'name',
-            'image',
-            'text',
-            'cooking_time',
-        )
+        exclude = ('pub_date',)
 
     def get_is_favorited(self, obj):
         user = self.context['request'].user
@@ -256,11 +185,11 @@ class RecipeIngredientCreateSerializer(serializers.ModelSerializer):
         fields = ('id', 'amount')
 
     def validate_amount(self, value):
-        if value < 1:
+        if value < SCORE_MIN:
             raise serializers.ValidationError(
                 'Количество не должно быть меньше 1'
             )
-        if value > 100_000:
+        if value > AMOUNT_SCORE_MAX:
             raise serializers.ValidationError(
                 'Количество не должно быть больше 100000'
             )
@@ -277,12 +206,12 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recipe
         fields = (
-            'ingredients',
-            'tags',
-            'image',
             'name',
-            'text',
             'cooking_time',
+            'text', 'tags',
+            'ingredients',
+            'image',
+            'pub_date'
         )
 
     def validate_ingredients(self, ingredients):
@@ -292,10 +221,10 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
         return ingredients
 
     def validate_cooking_time(self, value):
-        if int(value) < 1:
+        if int(value) < SCORE_MIN:
             raise serializers.ValidationError(
                 'Время готовки не должно быть меньше минуты')
-        if int(value) > 1440:
+        if int(value) > SCORE_MAX:
             raise serializers.ValidationError(
                 'Время готовки не должно быть больше суток')
         return value
@@ -303,20 +232,22 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
     @atomic(durable=True)
     def create(self, validated_data):
         tags = validated_data.pop('tags', [])
-        _ = self.context.get('request').user
         ingredients = validated_data.pop('ingredients')
-        instance = super().create(validated_data)
-        instance.tags.set(tags)
+        recipe = Recipe.objects.create(author=self.context['request'].user,
+                                       **validated_data)
+
+        recipe.tags.set(tags)
 
         recipe_ingredients = [
             RecipeIngredient(
-                recipe=instance,
+                recipe=recipe,
                 ingredient=ingredient_data['ingredient'],
                 amount=ingredient_data['amount']
             ) for ingredient_data in ingredients
         ]
         RecipeIngredient.objects.bulk_create(recipe_ingredients)
-        return instance
+        recipe.save()
+        return recipe
 
     @atomic(durable=True)
     def update(self, instance, validated_data):
@@ -331,7 +262,7 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
         instance.tags.set(new_tags)
 
         new_ingredients_data = validated_data.pop('ingredients', [])
-        existing_recipe_ingredients = instance.recipe_ingredients.all()
+        existing_recipe_ingredients = instance.ingredients.all()
         existing_recipe_ingredients.delete()
 
         recipe_ingredients = [
