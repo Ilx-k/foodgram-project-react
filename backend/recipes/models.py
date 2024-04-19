@@ -3,7 +3,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from users.models import CustomUser
+from users.models import FoodgramUser
 from recipes.validators import (validate_name,
                                 validate_hex_color,
                                 validate_recipe_name)
@@ -14,11 +14,13 @@ class Tag(models.Model):
         verbose_name=_('Название тега'),
         validators=(validate_name,),
         max_length=200,
+        unique=True
     )
     color = models.CharField(
         verbose_name=_('HEX-цвет тега'),
         validators=(validate_hex_color,),
         max_length=7,
+        unique=True
     )
     slug = models.SlugField(
         verbose_name=_('slug'),
@@ -46,13 +48,6 @@ class Recipe(models.Model):
         verbose_name=_('Автор рецепта'),
         on_delete=models.CASCADE,
         related_name='recipes'
-    )
-    ingredients = models.ManyToManyField(
-        'Ingredient',
-        verbose_name=_('Список ингредиентов'),
-        through='RecipeIngredient',
-        through_fields=('recipe', 'ingredient'),
-        help_text='Выберете ингредиенты'
     )
     name = models.CharField(
         verbose_name=_('Название'),
@@ -106,7 +101,7 @@ class Recipe(models.Model):
 class Ingredient(models.Model):
     name = models.CharField(
         verbose_name=_('Название ингредиента'),
-        validators=(validate_recipe_name,),
+        validators=(validate_name,),
         max_length=200,
         help_text='Введите название ингредиента'
     )
@@ -165,16 +160,16 @@ class RecipeIngredient(models.Model):
 
 class Favorite(models.Model):
     user = models.ForeignKey(
-        CustomUser,
+        FoodgramUser,
         on_delete=models.CASCADE,
-        related_name='favorites',
+        related_name='favorites_user',
         verbose_name=_('Пользователь'),
         help_text='Пользователь',
     )
     recipe = models.ForeignKey(
         Recipe,
         on_delete=models.CASCADE,
-        related_name='favorites',
+        related_name='favorites_recipe',
         related_query_name='favorites',
         verbose_name=_('Рецепт'),
         help_text='Рецепт',
@@ -194,7 +189,7 @@ class Favorite(models.Model):
 
 class ShoppingCart(models.Model):
     user = models.ForeignKey(
-        CustomUser,
+        FoodgramUser,
         on_delete=models.CASCADE,
         related_name='shopping_cart',
         verbose_name=_('Пользователь'),

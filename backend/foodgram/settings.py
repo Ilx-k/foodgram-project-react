@@ -1,18 +1,17 @@
 import os
 
 from pathlib import Path
-# from distutils.util import strtobool
+from distutils.util import strtobool
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY', 'random_secret_key')
 
-DEBUG = True
+DEBUG = strtobool(os.getenv('DEBUG_MODE', 'False'))
 
-# DEBUG = strtobool(os.getenv('DEBUG_MODE', 'False'))
-
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
+ALLOWED_HOSTS = ['localhost', '127.0.0.1',]
+# ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -62,20 +61,26 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'foodgram.wsgi.application'
 
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRES_DB', 'django'),
-        'USER': os.getenv('POSTGRES_USER', 'django'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', ''),
-        'HOST': os.getenv('DB_HOST', ''),
-        'PORT': os.getenv('DB_PORT', 5432)
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.getenv('POSTGRES_DB', 'django'),
+#         'USER': os.getenv('POSTGRES_USER', 'django'),
+#         'PASSWORD': os.getenv('POSTGRES_PASSWORD', ''),
+#         'HOST': os.getenv('DB_HOST', ''),
+#         'PORT': os.getenv('DB_PORT', 5432)
+#     }
+# }
 
-AUTH_USER_MODEL = 'users.CustomUser'
+
+AUTH_USER_MODEL = 'users.FoodgramUser'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -107,7 +112,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'collected_static'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '/media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CSV_FILES_DIR = os.path.join(BASE_DIR, 'data')
 
@@ -120,25 +125,27 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
     ],
+    'DEFAULT_PAGINATION_CLASS': 'api.paginations.CustomPagination',
+    'PAGE_SIZE': 6,
+    'PAGINATE_BY_PARAM': 'limit',
 }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 DJOSER = {
-    "HIDE_USERS": False,
-    "LOGIN_FIELD": "email",
+    'LOGIN_FIELD': 'email',
+    'HIDE_USERS': False,
+    'LOGOUT_ON_PASSWORD_CHANGE': True,
     'SERIALIZERS': {
-        'user': 'api.serializers.CustomUserSerializer',
-        'user_create': 'api.serializers.CustomUserSignUpSerializer',
-        'current_user': 'api.serializers.CustomUserSerializer',
+        'user': 'api.serializers.FoodgramUserSerializer',
+        'current_user': 'api.serializers.FoodgramUserSerializer',
     },
     'PERMISSIONS': {
-        'user': ['rest_framework.permissions.AllowAny'],
-        'user_list': ['rest_framework.permissions.AllowAny'],
-    }
+        'user': ['api.permissions.AllowAnyExceptMe'],
+        'user_list': ['api.permissions.AllowAnyExceptMe'],
+    },
 }
-
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 

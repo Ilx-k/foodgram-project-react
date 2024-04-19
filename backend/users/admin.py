@@ -1,10 +1,10 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import CustomUser, Subscription
+from .models import FoodgramUser, Subscription
 
 
-@admin.register(CustomUser)
+@admin.register(FoodgramUser)
 class UserAdmin(UserAdmin):
     list_display = (
         'pk',
