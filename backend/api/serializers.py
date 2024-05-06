@@ -162,7 +162,7 @@ class RecipeSerializer(serializers.ModelSerializer):
     tags = TagSerializer(many=True)
     ingredients = RecipeIngredientSerializer(many=True,
                                              source='ingredientes')
-    image = Base64ImageField(required=True)
+    image = Base64ImageField()
     author = FoodgramUserSerializer(read_only=True)
 
     class Meta:
@@ -217,7 +217,7 @@ class RecipeIngredientCreateSerializer(serializers.ModelSerializer):
 
 class RecipeCreateSerializer(serializers.ModelSerializer):
     ingredients = RecipeIngredientCreateSerializer(many=True)
-    image = Base64ImageField(required=True)
+    image = Base64ImageField()
     tags = serializers.PrimaryKeyRelatedField(many=True,
                                               queryset=Tag.objects.all(),
                                               required=True)
