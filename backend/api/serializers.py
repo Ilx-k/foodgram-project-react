@@ -1,10 +1,9 @@
 from django.db.transaction import atomic
 from drf_extra_fields.fields import Base64ImageField
+from rest_framework import serializers
 
 from recipes.models import (
-    Favorite, Ingredient, Recipe, RecipeIngredient, ShoppingCart, Tag,
-)
-from rest_framework import serializers
+    Favorite, Ingredient, Recipe, RecipeIngredient, ShoppingCart, Tag)
 from users.models import FoodgramUser, Subscription
 
 
@@ -30,40 +29,33 @@ class FoodgramUserSerializer(serializers.ModelSerializer):
         read_only_fields = ('id',)
 
     def get_is_subscribed(self, obj):
-        user = self.context['request'].user
-        if user.is_authenticated:
-            return Subscription.objects.filter(user=user, author=obj).exists()
+        request = self.context.get('request')
+        user = request.user
+        if request.user.is_authenticated:
+            return user.subscribers.filter(author=obj).exists()
         else:
             return False
 
 
-class SubscriptionSerializer(serializers.ModelSerializer):
-    email = serializers.ReadOnlyField(source='author.email')
-    id = serializers.ReadOnlyField(source='author.id')
-    username = serializers.ReadOnlyField(source='author.username')
-    first_name = serializers.ReadOnlyField(source='author.first_name')
-    last_name = serializers.ReadOnlyField(source='author.last_name')
-    is_subscribed = serializers.SerializerMethodField()
+class SubscriptionSerializer(FoodgramUserSerializer):
+
+    recipes_count = serializers.ReadOnlyField(source='recipes.count')
     recipes = serializers.SerializerMethodField()
-    recipes_count = serializers.SerializerMethodField()
 
-    class Meta:
-        model = Subscription
-        fields = ('email', 'id', 'username', 'first_name',
-                  'last_name', 'is_subscribed', 'recipes', 'recipes_count')
-
-    def get_is_subscribed(self, obj):
-        user = self.context['request'].user
-        return Subscription.objects.filter(user=user,
-                                           author=obj.author).exists()
+    class Meta(FoodgramUserSerializer.Meta):
+        fields = FoodgramUserSerializer.Meta.fields + (
+            'recipes',
+            'recipes_count',
+        )
 
     def get_recipes(self, obj):
-        recipes = Recipe.objects.filter(author=obj.author)
-        return RecipeMinifiedSerializer(recipes, many=True,
-                                        context=self.context).data
-
-    def get_recipes_count(self, obj):
-        return Recipe.objects.filter(author=obj.author).count()
+        queryset = obj.recipes.all()
+        recipes_limit = self.context['request'].GET.get('recipes_limit')
+        if recipes_limit and recipes_limit.isdigit():
+            queryset = queryset[:int(recipes_limit)]
+        return RecipeMinifiedSerializer(
+            queryset, many=True, context=self.context
+        ).data
 
 
 class SubscriptionCreateSerializer(serializers.Serializer):
@@ -84,6 +76,11 @@ class SubscriptionCreateSerializer(serializers.Serializer):
                 raise serializers.ValidationError(
                     'Нельзя подписаться на самого себя'
                 )
+            if Subscription.objects.filter(
+                    author=author, user=user).exists():
+                raise serializers.ValidationError(
+                    detail='Вы уже подписаны на этого пользователя!')
+
         elif self.context['request'].method == 'DELETE':
             try:
                 Subscription.objects.get(user=user, author=author)
@@ -94,10 +91,15 @@ class SubscriptionCreateSerializer(serializers.Serializer):
     def create(self, validated_data):
         return Subscription.objects.create(**validated_data)
 
+    def to_representation(self, instance):
+        return SubscriptionSerializer(
+            instance.author, context=self.context).data
 
-class FavoriteCreteSerializer(serializers.Serializer):
+
+class FavoriteCreateSerializer(serializers.Serializer):
     user = serializers.PrimaryKeyRelatedField(read_only=True)
     recipe = serializers.PrimaryKeyRelatedField(queryset=Recipe.objects.all())
+    model = Favorite
 
     class Meta:
         model = Favorite
@@ -107,44 +109,27 @@ class FavoriteCreteSerializer(serializers.Serializer):
         user = self.context['request'].user
         recipe = attrs['recipe']
         if self.context['request'].method == 'POST':
-            if Favorite.objects.filter(user=user, recipe=recipe).exists():
-                raise serializers.ValidationError('Рецепт уже в избранном')
+            if self.model.objects.filter(user=user, recipe=recipe).exists():
+                raise serializers.ValidationError('Рецепт уже добавлен')
         elif self.context['request'].method == 'DELETE':
-            if not Favorite.objects.filter(user=user, recipe=recipe).exists():
+            if not self.model.objects.filter(user=user,
+                                             recipe=recipe).exists():
                 raise serializers.ValidationError(
-                    'Рецепт не найден в избранных'
+                    'Рецепт не найден в добавленных'
                 )
         return attrs
 
     def create(self, validated_data):
-        return Favorite.objects.create(**validated_data)
+        return self.model.objects.create(**validated_data)
 
 
-class ShoppingCartCreateSerializer(serializers.Serializer):
-    user = serializers.PrimaryKeyRelatedField(read_only=True)
-    recipe = serializers.PrimaryKeyRelatedField(queryset=Recipe.objects.all())
+class ShoppingCartCreateSerializer(FavoriteCreateSerializer):
 
-    class Meta:
+    model = ShoppingCart
+
+    class Meta(FavoriteCreateSerializer.Meta):
+
         model = ShoppingCart
-        fields = ('user', 'recipe')
-
-    def validate(self, attrs):
-        user = self.context['request'].user
-        recipe = attrs['recipe']
-
-        if self.context['request'].method == 'POST':
-            if ShoppingCart.objects.filter(user=user, recipe=recipe).exists():
-                raise serializers.ValidationError(
-                    'Рецепт уже в корзине')
-        elif self.context['request'].method == 'DELETE':
-            if not ShoppingCart.objects.filter(user=user,
-                                               recipe=recipe).exists():
-                raise serializers.ValidationError(
-                    'Рецепт не найден в корзине')
-        return attrs
-
-    def create(self, validated_data):
-        return ShoppingCart.objects.create(**validated_data)
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -176,7 +161,7 @@ class RecipeSerializer(serializers.ModelSerializer):
     is_in_shopping_cart = serializers.SerializerMethodField()
     tags = TagSerializer(many=True)
     ingredients = RecipeIngredientSerializer(many=True,
-                                             source='recipe_ingredients')
+                                             source='ingredientes')
     image = Base64ImageField(required=True)
     author = FoodgramUserSerializer(read_only=True)
 
@@ -289,20 +274,20 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
     @atomic(durable=True)
     def create(self, validated_data):
         tags = validated_data.pop('tags', [])
-        _ = self.context.get('request').user
         ingredients = validated_data.pop('ingredients')
-        instance = super().create(validated_data)
-        instance.tags.set(tags)
-
+        recipe = Recipe.objects.create(author=self.context['request'].user,
+                                       **validated_data)
+        recipe.tags.set(tags)
         recipe_ingredients = [
             RecipeIngredient(
-                recipe=instance,
+                recipe=recipe,
                 ingredient=ingredient_data['ingredient'],
                 amount=ingredient_data['amount']
             ) for ingredient_data in ingredients
         ]
         RecipeIngredient.objects.bulk_create(recipe_ingredients)
-        return instance
+        recipe.save()
+        return recipe
 
     @atomic(durable=True)
     def update(self, instance, validated_data):
@@ -317,7 +302,7 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
         instance.tags.set(new_tags)
 
         new_ingredients_data = validated_data.pop('ingredients', [])
-        existing_recipe_ingredients = instance.recipe_ingredients.all()
+        existing_recipe_ingredients = instance.ingredientes.all()
         existing_recipe_ingredients.delete()
 
         recipe_ingredients = [

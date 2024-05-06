@@ -67,9 +67,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/",
+									"raw": "http://127.0.0.1:8000/api/users/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -135,9 +135,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/",
+									"raw": "http://127.0.0.1:8000/api/users/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -203,9 +203,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/",
+									"raw": "http://127.0.0.1:8000/api/users/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -272,9 +272,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/auth/token/login/",
+									"raw": "http://127.0.0.1:8000/api/auth/token/login/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -338,9 +338,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/auth/token/login/",
+									"raw": "http://127.0.0.1:8000/api/auth/token/login/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -393,9 +393,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/",
+									"raw": "http://127.0.0.1:8000/api/users/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -441,9 +441,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/",
+									"raw": "http://127.0.0.1:8000/api/users/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -489,9 +489,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/",
+									"raw": "http://127.0.0.1:8000/api/users/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -537,9 +537,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/",
+									"raw": "http://127.0.0.1:8000/api/users/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -585,9 +585,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/",
+									"raw": "http://127.0.0.1:8000/api/users/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -632,9 +632,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/",
+									"raw": "http://127.0.0.1:8000/api/users/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -679,9 +679,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/",
+									"raw": "http://127.0.0.1:8000/api/users/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -726,9 +726,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/",
+									"raw": "http://127.0.0.1:8000/api/users/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -773,9 +773,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/",
+									"raw": "http://127.0.0.1:8000/api/users/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -820,9 +820,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/",
+									"raw": "http://127.0.0.1:8000/api/users/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -867,9 +867,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/",
+									"raw": "http://127.0.0.1:8000/api/users/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -914,9 +914,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/",
+									"raw": "http://127.0.0.1:8000/api/users/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -963,9 +963,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/auth/token/login/",
+									"raw": "http://127.0.0.1:8000/api/auth/token/login/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -1009,9 +1009,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/auth/token/login/",
+									"raw": "http://127.0.0.1:8000/api/auth/token/login/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -1055,9 +1055,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/auth/token/login/",
+									"raw": "http://127.0.0.1:8000/api/auth/token/login/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -1113,9 +1113,9 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/auth/token/logout/",
+									"raw": "http://127.0.0.1:8000/api/auth/token/logout/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -1179,9 +1179,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/auth/token/login/",
+									"raw": "http://127.0.0.1:8000/api/auth/token/login/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -1286,9 +1286,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/",
+									"raw": "http://127.0.0.1:8000/api/users/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -1370,9 +1370,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/",
+									"raw": "http://127.0.0.1:8000/api/users/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -1466,9 +1466,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/?limit=1",
+									"raw": "http://127.0.0.1:8000/api/users/?limit=1",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -1527,9 +1527,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/{{userId}}/",
+									"raw": "http://127.0.0.1:8000/api/users/{{userId}}/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -1595,9 +1595,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/{{userId}}/",
+									"raw": "http://127.0.0.1:8000/api/users/{{userId}}/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -1677,9 +1677,9 @@
 									}
 								],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/me/",
+									"raw": "http://127.0.0.1:8000/api/users/me/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -1743,9 +1743,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/set_password/",
+									"raw": "http://127.0.0.1:8000/api/users/set_password/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -1808,9 +1808,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/auth/token/login/",
+									"raw": "http://127.0.0.1:8000/api/auth/token/login/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -1870,9 +1870,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/set_password/",
+									"raw": "http://127.0.0.1:8000/api/users/set_password/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -1935,9 +1935,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/auth/token/login/",
+									"raw": "http://127.0.0.1:8000/api/auth/token/login/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -1988,9 +1988,9 @@
 									}
 								],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/me/",
+									"raw": "http://127.0.0.1:8000/api/users/me/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -2040,9 +2040,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/9876/",
+									"raw": "http://127.0.0.1:8000/api/users/9876/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -2100,9 +2100,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/set_password/",
+									"raw": "http://127.0.0.1:8000/api/users/set_password/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -2191,9 +2191,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/tags/",
+									"raw": "http://127.0.0.1:8000/api/tags/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -2270,9 +2270,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/tags/",
+									"raw": "http://127.0.0.1:8000/api/tags/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -2324,9 +2324,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/tags/{{firstTagId}}/",
+									"raw": "http://127.0.0.1:8000/api/tags/{{firstTagId}}/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -2391,9 +2391,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/tags/{{firstTagId}}/",
+									"raw": "http://127.0.0.1:8000/api/tags/{{firstTagId}}/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -2448,9 +2448,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/tags/9876/",
+									"raw": "http://127.0.0.1:8000/api/tags/9876/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -2509,9 +2509,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/tags/",
+									"raw": "http://127.0.0.1:8000/api/tags/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -2569,9 +2569,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/tags/{{firstTagId}}/",
+									"raw": "http://127.0.0.1:8000/api/tags/{{firstTagId}}/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -2630,9 +2630,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/tags/{{firstTagId}}/",
+									"raw": "http://127.0.0.1:8000/api/tags/{{firstTagId}}/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -2682,9 +2682,9 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/tags/{{firstTagId}}/",
+									"raw": "http://127.0.0.1:8000/api/tags/{{firstTagId}}/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -2769,9 +2769,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/ingredients/",
+									"raw": "http://127.0.0.1:8000/api/ingredients/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -2851,9 +2851,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/ingredients/",
+									"raw": "http://127.0.0.1:8000/api/ingredients/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -2930,9 +2930,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/ingredients/?name={{ingredientNameFirstLatter}}",
+									"raw": "http://127.0.0.1:8000/api/ingredients/?name={{ingredientNameFirstLatter}}",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -2988,9 +2988,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/ingredients/{{firstIndredientId}}/",
+									"raw": "http://127.0.0.1:8000/api/ingredients/{{firstIndredientId}}/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -3053,9 +3053,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/ingredients/{{firstIndredientId}}/",
+									"raw": "http://127.0.0.1:8000/api/ingredients/{{firstIndredientId}}/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -3110,9 +3110,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/ingredients/9876/",
+									"raw": "http://127.0.0.1:8000/api/ingredients/9876/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -3171,9 +3171,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/ingredients/",
+									"raw": "http://127.0.0.1:8000/api/ingredients/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -3231,9 +3231,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/ingredients/{{firstIndredientId}}/",
+									"raw": "http://127.0.0.1:8000/api/ingredients/{{firstIndredientId}}/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -3292,9 +3292,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/ingredients/{{firstIndredientId}}/",
+									"raw": "http://127.0.0.1:8000/api/ingredients/{{firstIndredientId}}/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -3344,9 +3344,9 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/ingredients/{{firstIndredientId}}/",
+									"raw": "http://127.0.0.1:8000/api/ingredients/{{firstIndredientId}}/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -3489,9 +3489,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/",
+									"raw": "http://127.0.0.1:8000/api/recipes/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -3600,9 +3600,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/",
+									"raw": "http://127.0.0.1:8000/api/recipes/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -3711,9 +3711,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/",
+									"raw": "http://127.0.0.1:8000/api/recipes/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -3822,9 +3822,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/",
+									"raw": "http://127.0.0.1:8000/api/recipes/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -3948,9 +3948,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/",
+									"raw": "http://127.0.0.1:8000/api/recipes/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -4106,9 +4106,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/",
+									"raw": "http://127.0.0.1:8000/api/recipes/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -4236,9 +4236,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/",
+									"raw": "http://127.0.0.1:8000/api/recipes/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -4377,9 +4377,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/?limit=2",
+									"raw": "http://127.0.0.1:8000/api/recipes/?limit=2",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -4531,9 +4531,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/?author={{userId}}",
+									"raw": "http://127.0.0.1:8000/api/recipes/?author={{userId}}",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -4704,9 +4704,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/?tags={{secondTagSlug}}&tags={{thirdTagSlug}}",
+									"raw": "http://127.0.0.1:8000/api/recipes/?tags={{secondTagSlug}}&tags={{thirdTagSlug}}",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -4826,9 +4826,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/{{firstRecipeId}}/",
+									"raw": "http://127.0.0.1:8000/api/recipes/{{firstRecipeId}}/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -4939,9 +4939,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/{{firstRecipeId}}/",
+									"raw": "http://127.0.0.1:8000/api/recipes/{{firstRecipeId}}/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -5066,9 +5066,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/{{firstRecipeId}}/",
+									"raw": "http://127.0.0.1:8000/api/recipes/{{firstRecipeId}}/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -5134,9 +5134,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/",
+											"raw": "http://127.0.0.1:8000/api/recipes/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -5193,9 +5193,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/",
+											"raw": "http://127.0.0.1:8000/api/recipes/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -5252,9 +5252,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/",
+											"raw": "http://127.0.0.1:8000/api/recipes/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -5311,9 +5311,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/",
+											"raw": "http://127.0.0.1:8000/api/recipes/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -5370,9 +5370,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/",
+											"raw": "http://127.0.0.1:8000/api/recipes/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -5429,9 +5429,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/",
+											"raw": "http://127.0.0.1:8000/api/recipes/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -5488,9 +5488,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/",
+											"raw": "http://127.0.0.1:8000/api/recipes/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -5547,9 +5547,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/",
+											"raw": "http://127.0.0.1:8000/api/recipes/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -5606,9 +5606,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/",
+											"raw": "http://127.0.0.1:8000/api/recipes/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -5665,9 +5665,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/",
+											"raw": "http://127.0.0.1:8000/api/recipes/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -5724,9 +5724,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/",
+											"raw": "http://127.0.0.1:8000/api/recipes/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -5783,9 +5783,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/",
+											"raw": "http://127.0.0.1:8000/api/recipes/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -5842,9 +5842,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/",
+											"raw": "http://127.0.0.1:8000/api/recipes/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -5901,9 +5901,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/",
+											"raw": "http://127.0.0.1:8000/api/recipes/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -5960,9 +5960,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/",
+											"raw": "http://127.0.0.1:8000/api/recipes/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -6019,9 +6019,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/",
+											"raw": "http://127.0.0.1:8000/api/recipes/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -6078,9 +6078,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/",
+											"raw": "http://127.0.0.1:8000/api/recipes/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -6137,9 +6137,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/",
+											"raw": "http://127.0.0.1:8000/api/recipes/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -6196,9 +6196,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/",
+											"raw": "http://127.0.0.1:8000/api/recipes/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -6243,9 +6243,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/",
+											"raw": "http://127.0.0.1:8000/api/recipes/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -6307,9 +6307,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/{{secondRecipeId}}/",
+											"raw": "http://127.0.0.1:8000/api/recipes/{{secondRecipeId}}/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -6355,9 +6355,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/{{secondRecipeId}}/",
+											"raw": "http://127.0.0.1:8000/api/recipes/{{secondRecipeId}}/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -6415,9 +6415,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/{{secondRecipeId}}/",
+											"raw": "http://127.0.0.1:8000/api/recipes/{{secondRecipeId}}/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -6475,9 +6475,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/{{secondRecipeId}}/",
+											"raw": "http://127.0.0.1:8000/api/recipes/{{secondRecipeId}}/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -6535,9 +6535,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/{{secondRecipeId}}/",
+											"raw": "http://127.0.0.1:8000/api/recipes/{{secondRecipeId}}/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -6596,9 +6596,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/{{secondRecipeId}}/",
+											"raw": "http://127.0.0.1:8000/api/recipes/{{secondRecipeId}}/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -6656,9 +6656,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/{{secondRecipeId}}/",
+											"raw": "http://127.0.0.1:8000/api/recipes/{{secondRecipeId}}/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -6716,9 +6716,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/{{secondRecipeId}}/",
+											"raw": "http://127.0.0.1:8000/api/recipes/{{secondRecipeId}}/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -6776,9 +6776,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/{{secondRecipeId}}/",
+											"raw": "http://127.0.0.1:8000/api/recipes/{{secondRecipeId}}/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -6836,9 +6836,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/{{secondRecipeId}}/",
+											"raw": "http://127.0.0.1:8000/api/recipes/{{secondRecipeId}}/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -6896,9 +6896,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/{{secondRecipeId}}/",
+											"raw": "http://127.0.0.1:8000/api/recipes/{{secondRecipeId}}/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -6956,9 +6956,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/{{secondRecipeId}}/",
+											"raw": "http://127.0.0.1:8000/api/recipes/{{secondRecipeId}}/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -7016,9 +7016,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/{{secondRecipeId}}/",
+											"raw": "http://127.0.0.1:8000/api/recipes/{{secondRecipeId}}/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -7076,9 +7076,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/{{secondRecipeId}}/",
+											"raw": "http://127.0.0.1:8000/api/recipes/{{secondRecipeId}}/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -7136,9 +7136,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/{{secondRecipeId}}/",
+											"raw": "http://127.0.0.1:8000/api/recipes/{{secondRecipeId}}/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -7196,9 +7196,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/{{secondRecipeId}}/",
+											"raw": "http://127.0.0.1:8000/api/recipes/{{secondRecipeId}}/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -7256,9 +7256,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/{{secondRecipeId}}/",
+											"raw": "http://127.0.0.1:8000/api/recipes/{{secondRecipeId}}/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -7316,9 +7316,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/9876/",
+											"raw": "http://127.0.0.1:8000/api/recipes/9876/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -7437,9 +7437,9 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/{{thirdUserId}}/subscribe/",
+									"raw": "http://127.0.0.1:8000/api/users/{{thirdUserId}}/subscribe/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -7535,9 +7535,9 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/{{secondUserId}}/subscribe/?recipes_limit=2",
+									"raw": "http://127.0.0.1:8000/api/users/{{secondUserId}}/subscribe/?recipes_limit=2",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -7650,9 +7650,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/subscriptions/",
+									"raw": "http://127.0.0.1:8000/api/users/subscriptions/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -7764,9 +7764,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/subscriptions/?limit=1",
+									"raw": "http://127.0.0.1:8000/api/users/subscriptions/?limit=1",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -7886,9 +7886,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/subscriptions/?recipes_limit=2",
+									"raw": "http://127.0.0.1:8000/api/users/subscriptions/?recipes_limit=2",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -7936,9 +7936,9 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/{{thirdUserId}}/subscribe/",
+									"raw": "http://127.0.0.1:8000/api/users/{{thirdUserId}}/subscribe/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -7988,9 +7988,9 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/{{thirdUserId}}/subscribe/",
+									"raw": "http://127.0.0.1:8000/api/users/{{thirdUserId}}/subscribe/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -8040,9 +8040,9 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/{{userId}}/subscribe/",
+									"raw": "http://127.0.0.1:8000/api/users/{{userId}}/subscribe/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -8092,9 +8092,9 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/9876/subscribe/",
+									"raw": "http://127.0.0.1:8000/api/users/9876/subscribe/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -8204,9 +8204,9 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/{{firstRecipeId}}/shopping_cart/",
+									"raw": "http://127.0.0.1:8000/api/recipes/{{firstRecipeId}}/shopping_cart/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -8262,9 +8262,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/download_shopping_cart/",
+									"raw": "http://127.0.0.1:8000/api/recipes/download_shopping_cart/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -8306,9 +8306,9 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/{{firstRecipeId}}/shopping_cart/",
+									"raw": "http://127.0.0.1:8000/api/recipes/{{firstRecipeId}}/shopping_cart/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -8358,9 +8358,9 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/{{firstRecipeId}}/shopping_cart/",
+									"raw": "http://127.0.0.1:8000/api/recipes/{{firstRecipeId}}/shopping_cart/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -8410,9 +8410,9 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/9876/shopping_cart/",
+									"raw": "http://127.0.0.1:8000/api/recipes/9876/shopping_cart/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -8522,9 +8522,9 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/{{firstRecipeId}}/favorite/",
+									"raw": "http://127.0.0.1:8000/api/recipes/{{firstRecipeId}}/favorite/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -8567,9 +8567,9 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/{{firstRecipeId}}/favorite/",
+									"raw": "http://127.0.0.1:8000/api/recipes/{{firstRecipeId}}/favorite/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -8619,9 +8619,9 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/{{firstRecipeId}}/favorite/",
+									"raw": "http://127.0.0.1:8000/api/recipes/{{firstRecipeId}}/favorite/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -8671,9 +8671,9 @@
 								"method": "POST",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/9876/favorite/",
+									"raw": "http://127.0.0.1:8000/api/recipes/9876/favorite/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -8863,9 +8863,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://piratefoodgram.zapto.org/api/recipes/?is_in_shopping_cart=1",
+							"raw": "http://127.0.0.1:8000/api/recipes/?is_in_shopping_cart=1",
 							"host": [
-								"https://piratefoodgram.zapto.org"
+								"http://127.0.0.1:8000"
 							],
 							"path": [
 								"api",
@@ -8988,9 +8988,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://piratefoodgram.zapto.org/api/recipes/?is_in_shopping_cart=1",
+							"raw": "http://127.0.0.1:8000/api/recipes/?is_in_shopping_cart=1",
 							"host": [
-								"https://piratefoodgram.zapto.org"
+								"http://127.0.0.1:8000"
 							],
 							"path": [
 								"api",
@@ -9141,9 +9141,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://piratefoodgram.zapto.org/api/recipes/?is_favorited=1",
+							"raw": "http://127.0.0.1:8000/api/recipes/?is_favorited=1",
 							"host": [
-								"https://piratefoodgram.zapto.org"
+								"http://127.0.0.1:8000"
 							],
 							"path": [
 								"api",
@@ -9266,9 +9266,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://piratefoodgram.zapto.org/api/recipes/?is_favorited=1",
+							"raw": "http://127.0.0.1:8000/api/recipes/?is_favorited=1",
 							"host": [
-								"https://piratefoodgram.zapto.org"
+								"http://127.0.0.1:8000"
 							],
 							"path": [
 								"api",
@@ -9321,9 +9321,9 @@
 										"method": "DELETE",
 										"header": [],
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/users/{{thirdUserId}}/subscribe/",
+											"raw": "http://127.0.0.1:8000/api/users/{{thirdUserId}}/subscribe/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -9373,9 +9373,9 @@
 										"method": "DELETE",
 										"header": [],
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/users/{{thirdUserId}}/subscribe/",
+											"raw": "http://127.0.0.1:8000/api/users/{{thirdUserId}}/subscribe/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -9425,9 +9425,9 @@
 										"method": "DELETE",
 										"header": [],
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/users/9876/subscribe/",
+											"raw": "http://127.0.0.1:8000/api/users/9876/subscribe/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -9479,9 +9479,9 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/{{thirdUserId}}/subscribe/",
+									"raw": "http://127.0.0.1:8000/api/users/{{thirdUserId}}/subscribe/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -9531,9 +9531,9 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/users/{{secondUserId}}/subscribe/",
+									"raw": "http://127.0.0.1:8000/api/users/{{secondUserId}}/subscribe/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -9579,9 +9579,9 @@
 										"method": "DELETE",
 										"header": [],
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/{{firstRecipeId}}/shopping_cart/",
+											"raw": "http://127.0.0.1:8000/api/recipes/{{firstRecipeId}}/shopping_cart/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -9631,9 +9631,9 @@
 										"method": "DELETE",
 										"header": [],
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/{{firstRecipeId}}/shopping_cart/",
+											"raw": "http://127.0.0.1:8000/api/recipes/{{firstRecipeId}}/shopping_cart/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -9683,9 +9683,9 @@
 										"method": "DELETE",
 										"header": [],
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/9876/shopping_cart/",
+											"raw": "http://127.0.0.1:8000/api/recipes/9876/shopping_cart/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -9737,9 +9737,9 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/{{firstRecipeId}}/shopping_cart/",
+									"raw": "http://127.0.0.1:8000/api/recipes/{{firstRecipeId}}/shopping_cart/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -9785,9 +9785,9 @@
 										"method": "DELETE",
 										"header": [],
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/{{firstRecipeId}}/favorite/",
+											"raw": "http://127.0.0.1:8000/api/recipes/{{firstRecipeId}}/favorite/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -9837,9 +9837,9 @@
 										"method": "DELETE",
 										"header": [],
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/{{firstRecipeId}}/favorite/",
+											"raw": "http://127.0.0.1:8000/api/recipes/{{firstRecipeId}}/favorite/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -9889,9 +9889,9 @@
 										"method": "DELETE",
 										"header": [],
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/9876/favorite/",
+											"raw": "http://127.0.0.1:8000/api/recipes/9876/favorite/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -9943,9 +9943,9 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/{{firstRecipeId}}/favorite/",
+									"raw": "http://127.0.0.1:8000/api/recipes/{{firstRecipeId}}/favorite/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -10000,9 +10000,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/{{fifthRecipeId}}/",
+											"raw": "http://127.0.0.1:8000/api/recipes/{{fifthRecipeId}}/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -10060,9 +10060,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/{{fifthRecipeId}}/",
+											"raw": "http://127.0.0.1:8000/api/recipes/{{fifthRecipeId}}/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -10120,9 +10120,9 @@
 											}
 										},
 										"url": {
-											"raw": "https://piratefoodgram.zapto.org/api/recipes/9876/",
+											"raw": "http://127.0.0.1:8000/api/recipes/9876/",
 											"host": [
-												"https://piratefoodgram.zapto.org"
+												"http://127.0.0.1:8000"
 											],
 											"path": [
 												"api",
@@ -10182,9 +10182,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/{{firstRecipeId}}/",
+									"raw": "http://127.0.0.1:8000/api/recipes/{{firstRecipeId}}/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -10242,9 +10242,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/{{secondRecipeId}}/",
+									"raw": "http://127.0.0.1:8000/api/recipes/{{secondRecipeId}}/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -10302,9 +10302,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/{{thirdRecipeId}}/",
+									"raw": "http://127.0.0.1:8000/api/recipes/{{thirdRecipeId}}/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -10362,9 +10362,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/{{fourthRecipeId}}/",
+									"raw": "http://127.0.0.1:8000/api/recipes/{{fourthRecipeId}}/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
@@ -10422,9 +10422,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://piratefoodgram.zapto.org/api/recipes/{{fifthRecipeId}}/",
+									"raw": "http://127.0.0.1:8000/api/recipes/{{fifthRecipeId}}/",
 									"host": [
-										"https://piratefoodgram.zapto.org"
+										"http://127.0.0.1:8000"
 									],
 									"path": [
 										"api",
