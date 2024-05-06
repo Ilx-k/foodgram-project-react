@@ -26,7 +26,6 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'recipes.apps.RecipesConfig',
     'api.apps.ApiConfig',
-    'django_extensions',
 ]
 
 
