@@ -1,7 +1,7 @@
 asgiref==3.7.2
 django-cors-headers==4.3.1
 drf_yasg==1.21.4
-drf_extra_fields==4.11.0
+drf-extra-fields==3.7.0
 Django==3.2.3
 djangorestframework==3.12.4
 djoser==2.1.0
