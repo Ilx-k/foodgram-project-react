@@ -5,6 +5,7 @@ from rest_framework import serializers
 from recipes.models import (
     Favorite, Ingredient, Recipe, RecipeIngredient, ShoppingCart, Tag)
 from users.models import FoodgramUser, Subscription
+from recipes.validators import validate_name
 
 
 class RecipeMinifiedSerializer(serializers.ModelSerializer):
@@ -124,7 +125,6 @@ class FavoriteCreateSerializer(serializers.Serializer):
 
 
 class ShoppingCartCreateSerializer(FavoriteCreateSerializer):
-
     model = ShoppingCart
 
     class Meta(FavoriteCreateSerializer.Meta):
@@ -133,12 +133,16 @@ class ShoppingCartCreateSerializer(FavoriteCreateSerializer):
 
 
 class TagSerializer(serializers.ModelSerializer):
+    name = serializers.CharField(validators=[validate_name])
+
     class Meta:
         model = Tag
         fields = ('id', 'name', 'color', 'slug')
 
 
 class IngredientSerializer(serializers.ModelSerializer):
+    name = serializers.CharField(validators=[validate_name])
+
     class Meta:
         model = Ingredient
         fields = ('id', 'name', 'measurement_unit')
@@ -164,6 +168,7 @@ class RecipeSerializer(serializers.ModelSerializer):
                                              source='ingredientes')
     image = Base64ImageField()
     author = FoodgramUserSerializer(read_only=True)
+    name = serializers.CharField(validators=[validate_name])
 
     class Meta:
         model = Recipe
