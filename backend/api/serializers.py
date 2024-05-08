@@ -35,8 +35,6 @@ class FoodgramUserSerializer(serializers.ModelSerializer):
         user = request.user
         if request.user.is_authenticated:
             return user.subscribers.filter(author=obj).exists()
-        else:
-            return False
 
 
 class SubscriptionSerializer(FoodgramUserSerializer):

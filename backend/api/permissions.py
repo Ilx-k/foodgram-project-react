@@ -6,12 +6,6 @@ class IsAuthenticatedOrReadOnly(BasePermission):
         return request.method in SAFE_METHODS or request.user.is_authenticated
 
 
-class AllowAnyExceptMe(BasePermission):
-
-    def has_permission(self, request, view):
-        return view.action != 'me' or request.user.is_authenticated
-
-
 class IsAuthorOrReadOnly(BasePermission):
 
     message = 'Редактирование или удаление разрешено только автору'

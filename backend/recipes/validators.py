@@ -8,7 +8,7 @@ from .constants import (SCORE_MIN, AMOUNT_SCORE_MAX, SCORE_MAX)
 def validate_name(value):
     if re.search(r'^[а-яА-ЯёЁa-zA-Z]+$', value) is None:
         raise ValidationError(
-            ('Не допустимые символы в имени.'
+            ('Не допустимые символы в имени или фамилии.'
              'Оно может содержать только буквы.'),
             params={'value': value},
         )

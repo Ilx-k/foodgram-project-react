@@ -3,27 +3,28 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from users.models import FoodgramUser
-from recipes.validators import (validate_name, validate_hex_color,
-                                validate_recipe_name, validate_cooking_time,
-                                validate_amount)
+from .validators import (
+    validate_name, validate_hex_color, validate_recipe_name,
+    validate_cooking_time, validate_amount)
+from .constants import CHAR_LENGTH, TEXT_LENGTH, COLOR_LENGTH
 
 
 class Tag(models.Model):
     name = models.CharField(
         verbose_name=_('Название тега'),
         validators=(validate_name,),
-        max_length=200,
+        max_length=CHAR_LENGTH,
         unique=True
     )
     color = models.CharField(
         verbose_name=_('HEX-цвет тега'),
         validators=(validate_hex_color,),
-        max_length=7,
+        max_length=COLOR_LENGTH,
         unique=True
     )
     slug = models.SlugField(
         verbose_name=_('slug'),
-        max_length=200,
+        max_length=CHAR_LENGTH,
         unique=True,
     )
 
@@ -39,12 +40,12 @@ class Ingredient(models.Model):
     name = models.CharField(
         verbose_name=_('Название ингредиента'),
         validators=(validate_name,),
-        max_length=200,
+        max_length=CHAR_LENGTH,
         help_text='Введите название ингредиента'
     )
     measurement_unit = models.CharField(
         verbose_name=_('Единица измерения'),
-        max_length=200,
+        max_length=CHAR_LENGTH,
         help_text='Введите единицу измерения'
     )
 
@@ -76,7 +77,7 @@ class Recipe(models.Model):
     name = models.CharField(
         verbose_name=_('Название'),
         validators=(validate_recipe_name,),
-        max_length=200,
+        max_length=CHAR_LENGTH,
         help_text='Введите название рецепта'
     )
     image = models.ImageField(
@@ -88,7 +89,7 @@ class Recipe(models.Model):
     )
     text = models.CharField(
         verbose_name=_('Описание'),
-        max_length=250,
+        max_length=TEXT_LENGTH,
         help_text='Составьте описание'
     )
     cooking_time = models.PositiveSmallIntegerField(

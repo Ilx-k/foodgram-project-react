@@ -134,8 +134,7 @@ DJOSER = {
         'current_user': 'api.serializers.FoodgramUserSerializer',
     },
     'PERMISSIONS': {
-        'user': ['api.permissions.AllowAnyExceptMe'],
-        'user_list': ['rest_framework.permissions.AllowAny'],
+        'user': ['djoser.permissions.CurrentUserOrAdminOrReadOnly'],
     },
 }
 
