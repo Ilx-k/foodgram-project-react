@@ -8,7 +8,8 @@ from .constants import (SCORE_MIN, AMOUNT_SCORE_MAX, SCORE_MAX)
 def validate_name(value):
     if re.search(r'^[а-яА-ЯёЁa-zA-Z]+$', value) is None:
         raise ValidationError(
-            (f'Не допустимые символы <{value}> в имени.'),
+            ('Не допустимые символы в имени.'
+             'Оно может содержать только буквы.'),
             params={'value': value},
         )
     return value
@@ -17,7 +18,8 @@ def validate_name(value):
 def validate_recipe_name(value):
     if re.search(r'^[а-яА-ЯёЁa-zA-Z0-9-_.()\s]+$', value) is None:
         raise ValidationError(
-            (f'Не допустимые символы <{value}> в названии.'),
+            ('Не допустимые символы в названии.Оно может содержать только'
+             'буквы, цифры и знаки ()/./-/_'),
             params={'value': value},
         )
     return value

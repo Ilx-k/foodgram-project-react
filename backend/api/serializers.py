@@ -5,7 +5,8 @@ from rest_framework import serializers
 from recipes.models import (
     Favorite, Ingredient, Recipe, RecipeIngredient, ShoppingCart, Tag)
 from users.models import FoodgramUser, Subscription
-from recipes.validators import validate_name
+from recipes.validators import (
+    validate_name, validate_amount, validate_cooking_time)
 
 
 class RecipeMinifiedSerializer(serializers.ModelSerializer):
@@ -203,21 +204,11 @@ class RecipeIngredientCreateSerializer(serializers.ModelSerializer):
         queryset=Ingredient.objects.all(),
         source='ingredient'
     )
+    amount = serializers.IntegerField(validators=[validate_amount])
 
     class Meta:
         model = RecipeIngredient
         fields = ('id', 'amount')
-
-    def validate_amount(self, value):
-        if value < 1:
-            raise serializers.ValidationError(
-                'Количество не должно быть меньше 1'
-            )
-        if value > 100000:
-            raise serializers.ValidationError(
-                'Количество не должно быть больше 100000'
-            )
-        return value
 
 
 class RecipeCreateSerializer(serializers.ModelSerializer):
@@ -226,6 +217,7 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
     tags = serializers.PrimaryKeyRelatedField(many=True,
                                               queryset=Tag.objects.all(),
                                               required=True)
+    cooking_time = serializers.IntegerField(validators=[validate_cooking_time])
 
     class Meta:
         model = Recipe
@@ -266,15 +258,6 @@ class RecipeCreateSerializer(serializers.ModelSerializer):
                 'Ингредиенты должны быть уникальными.'
             )
         return obj
-
-    def validate_cooking_time(self, value):
-        if int(value) < 1:
-            raise serializers.ValidationError(
-                'Время готовки не должно быть меньше минуты')
-        if int(value) > 1440:
-            raise serializers.ValidationError(
-                'Время готовки не должно быть больше суток')
-        return value
 
     @atomic(durable=True)
     def create(self, validated_data):
